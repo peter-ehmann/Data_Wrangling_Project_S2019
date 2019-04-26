@@ -1,0 +1,25 @@
+---
+title: 'Data Wrangling Final Project'
+author: 'Peter J. Ehmann'
+date: 'Due: 5/6/2019'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+library(tidyverse)
+```
+
+<br>
+
+### Get smoking data.
+
+```{r 2}
+smoking_data <- 'https://chronicdata.cdc.gov/resource/gx47-p4ij.json' %>% 
+  fromJSON() %>% 
+  as.data.frame()
+```
+
+Code to retrive data
+
+<br>
