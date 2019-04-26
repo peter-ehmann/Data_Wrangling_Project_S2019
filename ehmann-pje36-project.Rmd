@@ -20,6 +20,6 @@ smoking_data <- 'https://chronicdata.cdc.gov/resource/gx47-p4ij.json' %>%
   as.data.frame()
 ```
 
-Code to retrive data
+Code to retrive data.....
 
 <br>
