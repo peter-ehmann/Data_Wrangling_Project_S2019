@@ -19,29 +19,28 @@ library(xml2)
 
 <br>
 
-### Get smoking data.
+### Get smoking data. JSON.
 
 ```{r 2}
-smoking_data <- 'https://chronicdata.cdc.gov/resource/gx47-p4ij.json' %>% 
+smoking_rates <- 'https://chronicdata.cdc.gov/resource/gx47-p4ij.json' %>% 
   fromJSON() %>% 
   as.data.frame()
 ```
 
-### Get state taxation data.
+### Get state taxation data. JSON.
 
 ```{r 3}
-table <- "https://www.cdc.gov/statesystem/excisetax.html" %>% 
-  read_html() %>% 
-  html_nodes(xpath = "//tbody") %>% 
-  html_text()
+tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>% 
+  fromJSON() %>% 
+  as.data.frame()
 ```
 
 Note.....
 
-### Get state taxation data.
+### Get state taxation data. XPATH.
 
 ```{r 3}
-table1 <- "https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States" %>% 
+states <- "https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States" %>% 
   read_html() %>% 
   html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
   html_text()
@@ -55,5 +54,5 @@ Note.....
 phd <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv')
 ```
 
-CHANGE
+CHANGE 123
 
