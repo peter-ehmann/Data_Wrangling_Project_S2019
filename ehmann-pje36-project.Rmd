@@ -7,7 +7,14 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
+library(dplyr)
+library(jsonlite)
+library(lubridate)
+library(magrittr)
+library(rvest)
+library(stringr)
 library(tidyverse)
+library(xml2)
 ```
 
 <br>
@@ -20,6 +27,33 @@ smoking_data <- 'https://chronicdata.cdc.gov/resource/gx47-p4ij.json' %>%
   as.data.frame()
 ```
 
-Code to retrive data.....
+### Get state taxation data.
 
-<br>
+```{r 3}
+table <- "https://www.cdc.gov/statesystem/excisetax.html" %>% 
+  read_html() %>% 
+  html_nodes(xpath = "//tbody") %>% 
+  html_text()
+```
+
+Note.....
+
+### Get state taxation data.
+
+```{r 3}
+table1 <- "https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States" %>% 
+  read_html() %>% 
+  html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
+  html_text()
+```
+
+Note.....
+
+### Read provided .csv in Github repository.
+
+```{r 4}
+phd <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv')
+```
+
+
+
