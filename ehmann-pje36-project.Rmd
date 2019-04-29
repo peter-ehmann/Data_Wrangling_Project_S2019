@@ -1,20 +1,18 @@
 ---
-title: 'Data Wrangling Final Project'
-author: 'Peter J. Ehmann'
-date: 'Due: 5/6/2019'
+title: "Data Wrangling Final Project"
+author: "Peter J. Ehmann"
+date: "Due: 5/6/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=TRUE)
-library(dplyr)
+```{r setup, include = FALSE}
+library(broom)
 library(jsonlite)
-library(lubridate)
-library(magrittr)
+library(knitr)
 library(rvest)
-library(stringr)
 library(tidyverse)
 library(xml2)
+opts_chunk$set(echo = FALSE)
 ```
 
 <br>
@@ -22,10 +20,16 @@ library(xml2)
 ### Get smoking data. JSON.
 
 ```{r 2}
-smoking_rates <- 'https://chronicdata.cdc.gov/resource/gx47-p4ij.json' %>% 
+smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>% 
   fromJSON() %>% 
-  as.data.frame()
+  as_tibble() %>% 
+  rename(state = locationdesc, abbr = locationabbr, year = year, percent = data_value) %>% 
+  select(state, abbr, year, percent) %>% 
+  group_by(state, abbr) %>% 
+  nest(.key = smoking_rate)
 ```
+
+<br>
 
 ### Get state taxation data. JSON.
 
@@ -35,26 +39,51 @@ tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>%
   as.data.frame()
 ```
 
-Note.....
+<br>
 
 ### Get state taxation data. XPATH.
 
 ```{r 3}
-states <- "https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States" %>% 
-  read_html() %>% 
+states_html <- read_html("https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States")
+
+list_of_states <- states_html %>% 
   html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
   html_text()
+
+tbl <- as_tibble(data.frame(matrix(nrow = length(list_of_states), ncol = 3)))
+colnames(tbl) <- c("state", "region", "division")
+tbl[,1] <- list_of_states
+
+division_names <- read_html(states_url) %>% 
+  html_nodes(xpath = "//div/div/div/div/ul/li/ul/li") %>% 
+  html_text() %>% 
+  str_extract(., "\\(([^()]*)\\)")
+
+
 ```
 
 Note.....
 
-### Read provided .csv in Github repository.
+### Write tidied dataset as a .csv to current directory.
 
-```{r 4}
-phd <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv')
+```{r write}
+# df_clean %>% write_csv("Book1.csv")
 ```
 
-CHANGE
+<br>
 
-CHANGE 123456789
+### Read in provided .csv from GitHub repository.
+
+```{r 4}
+data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/Book1.csv")
+kable(data)
+```
+
+<br>
+
+### Display information about the packages used, their versions, and the version of R that was used.
+
+```{r sessionInfo}
+devtools::sessionInfo()
+```
 
