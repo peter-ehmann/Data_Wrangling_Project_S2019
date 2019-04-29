@@ -26,7 +26,10 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
   rename(state = locationdesc, abbr = locationabbr, year = year, percent = data_value) %>% 
   select(state, abbr, year, percent) %>% 
   group_by(state, abbr) %>% 
-  nest(.key = smoking_rate)
+  nest(.key = smoking_rate) %>% 
+  filter(abbr != "PR",
+         abbr != "GU") %>% 
+  arrange(state)
 ```
 
 <br>
@@ -41,33 +44,77 @@ tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>%
 
 <br>
 
-### Get state taxation data. XPATH.
+### Get state taxation data. HTML for wikipedia list.
 
 ```{r 3}
 states_html <- read_html("https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States")
 
-list_of_states <- states_html %>% 
+states <- states_html %>% 
   html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
+  html_text()
+
+divisions <- states_html %>% 
+  html_nodes(xpath = "//div/div/div/div/ul/li/ul/li") %>% 
+  html_text()
+
+regions <- states_html %>% 
+  html_nodes(xpath = "//div/div/div/div/ul/li") %>% 
   html_text()
 
 tbl <- as_tibble(data.frame(matrix(nrow = length(list_of_states), ncol = 3)))
 colnames(tbl) <- c("state", "region", "division")
 tbl[,1] <- list_of_states
 
-division_names <- read_html(states_url) %>% 
-  html_nodes(xpath = "//div/div/div/div/ul/li/ul/li") %>% 
-  html_text() %>% 
-  str_extract(., "\\(([^()]*)\\)")
+division_names <- divisions %>% 
+  str_extract(., "\\((.*)\\)") %>% 
+  str_extract(., "[\\w+\\s?]+")
 
+division_counts <- divisions %>% 
+  str_count(., "\n")
 
+division_list = ""
+for (i in 1:length(division_names)) {
+  division_list <- c(division_list, (rep(division_names[i], division_counts[i])))
+}
+
+division_list <- division_list[-1]
+tbl[,3] <- division_list
+
+region_names <- regions %>% 
+  .[1:4] %>% 
+  str_extract(., "\\((.*)\\)") %>% 
+  str_extract(., "[\\w+\\s?]+")
+
+region_counts <- regions %>% 
+  .[1:4] %>% 
+  str_count(., "\n")
+
+divisions_per_region <- regions %>% 
+  .[1:4] %>% 
+  str_count(., "Division")
+
+region_list = ""
+for (i in 1:length(region_names)) {
+  region_list <- c(region_list, (rep(region_names[i], region_counts[i]-divisions_per_region[i])))
+}
+
+region_list <- region_list[-1]
+tbl[,2] <- region_list
+
+tbl <- tbl %>% arrange(state)
 ```
 
-Note.....
+<br>
+
+```{r merge_datasets}
+df_clean <- merge(smoking_rates, tbl, by = "state") %>%
+  unnest()
+```
 
 ### Write tidied dataset as a .csv to current directory.
 
-```{r write}
-# df_clean %>% write_csv("Book1.csv")
+```{r write_csv}
+df_clean %>% write_csv("smoking_data.csv")
 ```
 
 <br>
@@ -75,8 +122,7 @@ Note.....
 ### Read in provided .csv from GitHub repository.
 
 ```{r 4}
-data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/Book1.csv")
-kable(data)
+data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv")
 ```
 
 <br>
