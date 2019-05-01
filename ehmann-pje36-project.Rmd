@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling Final Project"
+title: "Analysis of Smoking Data (2011-2017)"
 author: "Peter J. Ehmann"
 date: "Due: 5/6/2019"
 output: html_document
@@ -17,9 +17,13 @@ opts_chunk$set(echo = FALSE)
 
 <br>
 
-### Get smoking data. JSON.
+# Part 1 - Acquire, clean, and format data (export as .csv).
 
-```{r 2}
+<br>
+
+#### You can retreive information about US state smoking data from the Centers for Disease Control (CDC) through the Socrata APA. The JSON-formatted data for smoking rates by state from 2011-2017 can be accessed from https://chronicdata.cdc.gov/resource/gx47-p4ij.json. A few columns of interest (renamed) are shown below. The smoking rate (%) and year are nested as 7x2 tibbles for each state.
+
+```{r rates, warning = FALSE}
 smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>% 
   fromJSON() %>% 
   as_tibble() %>% 
@@ -28,15 +32,15 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
   group_by(state, abbr) %>% 
   nest(.key = smoking_rate) %>% 
   filter(abbr != "PR",
-         abbr != "GU") %>% 
-  arrange(state)
+         abbr != "GU")
+smoking_rates
 ```
 
 <br>
 
-### Get state taxation data. JSON.
+#### Get state taxation data. JSON.
 
-```{r 3}
+```{r tax}
 tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>% 
   fromJSON() %>% 
   as.data.frame()
@@ -44,10 +48,12 @@ tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>%
 
 <br>
 
-### Get state taxation data. HTML for wikipedia list.
+#### Information about US state region classifications can be scraped from the main list in the HTML of https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States. The div, ul, and il tags can be used to extract each state's region and division (sub-region).
 
-```{r 3}
+```{r scrape_wiki_html}
+(
 states_html <- read_html("https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States")
+)
 
 states <- states_html %>% 
   html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
@@ -60,11 +66,9 @@ divisions <- states_html %>%
 regions <- states_html %>% 
   html_nodes(xpath = "//div/div/div/div/ul/li") %>% 
   html_text()
+```
 
-tbl <- as_tibble(data.frame(matrix(nrow = length(list_of_states), ncol = 3)))
-colnames(tbl) <- c("state", "region", "division")
-tbl[,1] <- list_of_states
-
+```{r extract_division}
 division_names <- divisions %>% 
   str_extract(., "\\((.*)\\)") %>% 
   str_extract(., "[\\w+\\s?]+")
@@ -76,10 +80,9 @@ division_list = ""
 for (i in 1:length(division_names)) {
   division_list <- c(division_list, (rep(division_names[i], division_counts[i])))
 }
+```
 
-division_list <- division_list[-1]
-tbl[,3] <- division_list
-
+```{r extract_region}
 region_names <- regions %>% 
   .[1:4] %>% 
   str_extract(., "\\((.*)\\)") %>% 
@@ -97,39 +100,50 @@ region_list = ""
 for (i in 1:length(region_names)) {
   region_list <- c(region_list, (rep(region_names[i], region_counts[i]-divisions_per_region[i])))
 }
+```
 
-region_list <- region_list[-1]
-tbl[,2] <- region_list
-
-tbl <- tbl %>% arrange(state)
+```{r states_table}
+state_table <- as_tibble(data.frame(matrix(nrow = length(states), ncol = 3)))
+colnames(state_table) <- c("state", "region", "division")
+state_table[,1] <- states
+state_table[,2] <- region_list[-1]
+state_table[,3] <- division_list[-1]
+state_table %>% arrange(state)
 ```
 
 <br>
 
-```{r merge_datasets}
-df_clean <- merge(smoking_rates, tbl, by = "state") %>%
+#### The X datasets are merged by*STATE and the nested tibbles are unnested.
+
+```{r merge_data}
+df_clean <- merge(smoking_rates, state_table, by = "state") %>%
   unnest()
 ```
 
-### Write tidied dataset as a .csv to current directory.
+#### The last step is to export the data as a .csv file which is posted in the GitHub repository.
 
 ```{r write_csv}
 df_clean %>% write_csv("smoking_data.csv")
+rm(list = ls(all = TRUE))
 ```
 
 <br>
 
-### Read in provided .csv from GitHub repository.
+# Part 2 - Data visualization and statistics.
 
-```{r 4}
+<br>
+
+#### The cleaned data can be retreived from the GitHub repository at https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv.
+
+```{r import_clean_data, message = FALSE}
 data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv")
+data
 ```
 
 <br>
 
-### Display information about the packages used, their versions, and the version of R that was used.
+#### Display information about the packages used, their versions, and the version of R that was used.
 
 ```{r sessionInfo}
-devtools::sessionInfo()
+devtools::session_info()
 ```
-
