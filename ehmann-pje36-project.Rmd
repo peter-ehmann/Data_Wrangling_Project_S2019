@@ -21,9 +21,10 @@ opts_chunk$set(echo = FALSE)
 
 <br>
 
-#### You can retreive information about US state smoking data from the Centers for Disease Control (CDC) through the Socrata APA. The JSON-formatted data for smoking rates by state from 2011-2017 can be accessed from https://chronicdata.cdc.gov/resource/gx47-p4ij.json. A few columns of interest (renamed) are shown below. The smoking rate (%) and year are nested as 7x2 tibbles for each state.
+#### You can retreive information about US state smoking data from the Centers for Disease Control (CDC) through the Socrata API. The JSON-formatted data for smoking rates by state from 2011-2017 can be accessed from https://chronicdata.cdc.gov/Survey-Data/Table-for-STATE-System-Current-Cigarette-Use-Among/xmxq-jxrr. There are a totoal of 371 JSON objects (rows) in the original dataset (53 states [includes DC, PR, GU] x 7 rows per state). A few columns of interest (renamed) are shown below. The smoking rate (%) and year are nested as 7x2 tibbles for each state.
 
 ```{r rates, warning = FALSE}
+(
 smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>% 
   fromJSON() %>% 
   as_tibble() %>% 
@@ -33,17 +34,29 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
   nest(.key = smoking_rate) %>% 
   filter(abbr != "PR",
          abbr != "GU")
-smoking_rates
+  )
 ```
 
 <br>
 
-#### Get state taxation data. JSON.
+#### You can retreive information about US state tobacco legislation (Cigarette - $ per pack) from 1995-2019 from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Tax/2dwv-vfam. The data can be accessed as JSON and filtered before retrieving it since there are a total of 152,192 rows in the dataset. A few columns of interest (renamed) are shown below.
 
 ```{r tax}
-tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>% 
+(
+tax <- paste0("https://chronicdata.cdc.gov/resource/7uzt-fasa.json?",  "Year=2011%20AND%20MeasureDesc=%27Cigarette%27%20OR%20Year=2017%20AND%20MeasureDesc=%27Cigarette%27") %>% 
   fromJSON() %>% 
-  as.data.frame()
+  as_tibble() %>% 
+  rename(state = locationdesc, tax_value = provisionvalue) %>% 
+  filter(state %in% as_vector(smoking_rates[,1])) %>% 
+  mutate(tax_value = as.numeric(tax_value)) %>% 
+  select(state, year, tax_value) %>% 
+  distinct() %>% 
+  group_by(state, year) %>% 
+  summarise(value = mean(tax_value)) %>% 
+  spread(., year, value) %>% 
+  rename(tax_2011 = `2011`, tax_2017 = `2017`) %>% 
+  mutate(delta_tax = tax_2017 - tax_2011)
+  )
 ```
 
 <br>
@@ -53,7 +66,7 @@ tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json" %>%
 ```{r scrape_wiki_html}
 (
 states_html <- read_html("https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States")
-)
+  )
 
 states <- states_html %>% 
   html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
@@ -113,18 +126,20 @@ state_table %>% arrange(state)
 
 <br>
 
-#### The X datasets are merged by*STATE and the nested tibbles are unnested.
+#### The datasets are merged by STATE and the nested tibbles are unnested.
 
 ```{r merge_data}
-df_clean <- merge(smoking_rates, state_table, by = "state") %>%
+df_clean <- merge(smoking_rates, tax, by = "state") %>% 
+  merge(., state_table, by = "state") %>% 
   unnest()
 ```
 
 #### The last step is to export the data as a .csv file which is posted in the GitHub repository.
 
 ```{r write_csv}
+# uncomment the second line to clear the global enviroment of all variables
 df_clean %>% write_csv("smoking_data.csv")
-rm(list = ls(all = TRUE))
+# rm(list = ls(all = TRUE))
 ```
 
 <br>
@@ -136,8 +151,9 @@ rm(list = ls(all = TRUE))
 #### The cleaned data can be retreived from the GitHub repository at https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv.
 
 ```{r import_clean_data, message = FALSE}
+(
 data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv")
-data
+  )
 ```
 
 <br>
