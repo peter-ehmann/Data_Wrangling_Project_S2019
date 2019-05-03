@@ -1,358 +1,358 @@
-state,abbr,region,division,year,percent
-Alabama,AL,South,East South Central,2017,20.9
-Alabama,AL,South,East South Central,2016,21.5
-Alabama,AL,South,East South Central,2015,21.4
-Alabama,AL,South,East South Central,2014,21.1
-Alabama,AL,South,East South Central,2013,21.5
-Alabama,AL,South,East South Central,2012,23.8
-Alabama,AL,South,East South Central,2011,24.3
-Alaska,AK,West,Pacific,2017,21.0
-Alaska,AK,West,Pacific,2016,19
-Alaska,AK,West,Pacific,2015,19.1
-Alaska,AK,West,Pacific,2014,19.9
-Alaska,AK,West,Pacific,2013,22.6
-Alaska,AK,West,Pacific,2012,20.5
-Alaska,AK,West,Pacific,2011,22.9
-Arizona,AZ,West,Mountain,2017,15.6
-Arizona,AZ,West,Mountain,2016,14.7
-Arizona,AZ,West,Mountain,2015,14
-Arizona,AZ,West,Mountain,2014,16.5
-Arizona,AZ,West,Mountain,2013,16.3
-Arizona,AZ,West,Mountain,2012,17.1
-Arizona,AZ,West,Mountain,2011,19.3
-Arkansas,AR,South,West South Central,2017,22.3
-Arkansas,AR,South,West South Central,2016,23.6
-Arkansas,AR,South,West South Central,2015,24.9
-Arkansas,AR,South,West South Central,2014,24.7
-Arkansas,AR,South,West South Central,2013,25.9
-Arkansas,AR,South,West South Central,2012,25
-Arkansas,AR,South,West South Central,2011,27
-California,CA,West,Pacific,2017,11.3
-California,CA,West,Pacific,2016,11
-California,CA,West,Pacific,2015,11.7
-California,CA,West,Pacific,2014,12.8
-California,CA,West,Pacific,2013,12.5
-California,CA,West,Pacific,2012,12.6
-California,CA,West,Pacific,2011,13.7
-Colorado,CO,West,Mountain,2017,14.6
-Colorado,CO,West,Mountain,2016,15.6
-Colorado,CO,West,Mountain,2015,15.6
-Colorado,CO,West,Mountain,2014,15.7
-Colorado,CO,West,Mountain,2013,17.7
-Colorado,CO,West,Mountain,2012,17.7
-Colorado,CO,West,Mountain,2011,18.3
-Connecticut,CT,Northeast,New England,2017,12.7
-Connecticut,CT,Northeast,New England,2016,13.3
-Connecticut,CT,Northeast,New England,2015,13.5
-Connecticut,CT,Northeast,New England,2014,15.4
-Connecticut,CT,Northeast,New England,2013,15.5
-Connecticut,CT,Northeast,New England,2012,16
-Connecticut,CT,Northeast,New England,2011,17.1
-Delaware,DE,South,South Atlantic,2017,17.0
-Delaware,DE,South,South Atlantic,2016,17.7
-Delaware,DE,South,South Atlantic,2015,17.4
-Delaware,DE,South,South Atlantic,2014,19.9
-Delaware,DE,South,South Atlantic,2013,19.6
-Delaware,DE,South,South Atlantic,2012,19.7
-Delaware,DE,South,South Atlantic,2011,21.8
-District of Columbia,DC,South,South Atlantic,2017,14.3
-District of Columbia,DC,South,South Atlantic,2016,14.7
-District of Columbia,DC,South,South Atlantic,2015,16
-District of Columbia,DC,South,South Atlantic,2014,16.4
-District of Columbia,DC,South,South Atlantic,2013,18.8
-District of Columbia,DC,South,South Atlantic,2012,19.6
-District of Columbia,DC,South,South Atlantic,2011,20.8
-Florida,FL,South,South Atlantic,2017,16.1
-Florida,FL,South,South Atlantic,2016,15.5
-Florida,FL,South,South Atlantic,2015,15.8
-Florida,FL,South,South Atlantic,2014,17.6
-Florida,FL,South,South Atlantic,2013,16.8
-Florida,FL,South,South Atlantic,2012,17.7
-Florida,FL,South,South Atlantic,2011,19.3
-Georgia,GA,South,South Atlantic,2017,17.5
-Georgia,GA,South,South Atlantic,2016,17.9
-Georgia,GA,South,South Atlantic,2015,17.7
-Georgia,GA,South,South Atlantic,2014,17.4
-Georgia,GA,South,South Atlantic,2013,18.8
-Georgia,GA,South,South Atlantic,2012,20.4
-Georgia,GA,South,South Atlantic,2011,21.2
-Hawaii,HI,West,Pacific,2017,12.8
-Hawaii,HI,West,Pacific,2016,13.1
-Hawaii,HI,West,Pacific,2015,14.1
-Hawaii,HI,West,Pacific,2014,14.1
-Hawaii,HI,West,Pacific,2013,13.3
-Hawaii,HI,West,Pacific,2012,14.6
-Hawaii,HI,West,Pacific,2011,16.8
-Idaho,ID,West,Mountain,2017,14.3
-Idaho,ID,West,Mountain,2016,14.5
-Idaho,ID,West,Mountain,2015,13.8
-Idaho,ID,West,Mountain,2014,15.9
-Idaho,ID,West,Mountain,2013,17.2
-Idaho,ID,West,Mountain,2012,16.4
-Idaho,ID,West,Mountain,2011,17.2
-Illinois,IL,Midwest,East North Central,2017,15.5
-Illinois,IL,Midwest,East North Central,2016,15.8
-Illinois,IL,Midwest,East North Central,2015,15.1
-Illinois,IL,Midwest,East North Central,2014,16.5
-Illinois,IL,Midwest,East North Central,2013,18
-Illinois,IL,Midwest,East North Central,2012,18.6
-Illinois,IL,Midwest,East North Central,2011,20.9
-Indiana,IN,Midwest,East North Central,2017,21.8
-Indiana,IN,Midwest,East North Central,2016,21.1
-Indiana,IN,Midwest,East North Central,2015,20.6
-Indiana,IN,Midwest,East North Central,2014,22.9
-Indiana,IN,Midwest,East North Central,2013,21.9
-Indiana,IN,Midwest,East North Central,2012,24
-Indiana,IN,Midwest,East North Central,2011,25.6
-Iowa,IA,Midwest,West North Central,2017,17.1
-Iowa,IA,Midwest,West North Central,2016,16.7
-Iowa,IA,Midwest,West North Central,2015,18.1
-Iowa,IA,Midwest,West North Central,2014,18.5
-Iowa,IA,Midwest,West North Central,2013,19.5
-Iowa,IA,Midwest,West North Central,2012,18.1
-Iowa,IA,Midwest,West North Central,2011,20.4
-Kansas,KS,Midwest,West North Central,2017,17.4
-Kansas,KS,Midwest,West North Central,2016,17.2
-Kansas,KS,Midwest,West North Central,2015,17.7
-Kansas,KS,Midwest,West North Central,2014,18.1
-Kansas,KS,Midwest,West North Central,2013,20
-Kansas,KS,Midwest,West North Central,2012,19.4
-Kansas,KS,Midwest,West North Central,2011,22
-Kentucky,KY,South,East South Central,2017,24.6
-Kentucky,KY,South,East South Central,2016,24.5
-Kentucky,KY,South,East South Central,2015,25.9
-Kentucky,KY,South,East South Central,2014,26.2
-Kentucky,KY,South,East South Central,2013,26.5
-Kentucky,KY,South,East South Central,2012,28.3
-Kentucky,KY,South,East South Central,2011,29
-Louisiana,LA,South,West South Central,2017,23.1
-Louisiana,LA,South,West South Central,2016,22.8
-Louisiana,LA,South,West South Central,2015,21.9
-Louisiana,LA,South,West South Central,2014,24
-Louisiana,LA,South,West South Central,2013,23.5
-Louisiana,LA,South,West South Central,2012,24.8
-Louisiana,LA,South,West South Central,2011,25.7
-Maine,ME,Northeast,New England,2017,17.3
-Maine,ME,Northeast,New England,2016,19.8
-Maine,ME,Northeast,New England,2015,19.5
-Maine,ME,Northeast,New England,2014,19.3
-Maine,ME,Northeast,New England,2013,20.2
-Maine,ME,Northeast,New England,2012,20.3
-Maine,ME,Northeast,New England,2011,22.8
-Maryland,MD,South,South Atlantic,2017,13.8
-Maryland,MD,South,South Atlantic,2016,13.7
-Maryland,MD,South,South Atlantic,2015,15.1
-Maryland,MD,South,South Atlantic,2014,14.6
-Maryland,MD,South,South Atlantic,2013,16.4
-Maryland,MD,South,South Atlantic,2012,16.2
-Maryland,MD,South,South Atlantic,2011,19.1
-Massachusetts,MA,Northeast,New England,2017,13.7
-Massachusetts,MA,Northeast,New England,2016,13.6
-Massachusetts,MA,Northeast,New England,2015,14
-Massachusetts,MA,Northeast,New England,2014,14.7
-Massachusetts,MA,Northeast,New England,2013,16.6
-Massachusetts,MA,Northeast,New England,2012,16.4
-Massachusetts,MA,Northeast,New England,2011,18.2
-Michigan,MI,Midwest,East North Central,2017,19.3
-Michigan,MI,Midwest,East North Central,2016,20.4
-Michigan,MI,Midwest,East North Central,2015,20.7
-Michigan,MI,Midwest,East North Central,2014,21.2
-Michigan,MI,Midwest,East North Central,2013,21.4
-Michigan,MI,Midwest,East North Central,2012,23.3
-Michigan,MI,Midwest,East North Central,2011,23.3
-Minnesota,MN,Midwest,West North Central,2017,14.5
-Minnesota,MN,Midwest,West North Central,2016,15.2
-Minnesota,MN,Midwest,West North Central,2015,16.2
-Minnesota,MN,Midwest,West North Central,2014,16.3
-Minnesota,MN,Midwest,West North Central,2013,18
-Minnesota,MN,Midwest,West North Central,2012,18.8
-Minnesota,MN,Midwest,West North Central,2011,19.1
-Mississippi,MS,South,East South Central,2017,22.2
-Mississippi,MS,South,East South Central,2016,22.7
-Mississippi,MS,South,East South Central,2015,22.5
-Mississippi,MS,South,East South Central,2014,23
-Mississippi,MS,South,East South Central,2013,24.8
-Mississippi,MS,South,East South Central,2012,24
-Mississippi,MS,South,East South Central,2011,26
-Missouri,MO,Midwest,West North Central,2017,20.8
-Missouri,MO,Midwest,West North Central,2016,22.1
-Missouri,MO,Midwest,West North Central,2015,22.3
-Missouri,MO,Midwest,West North Central,2014,20.6
-Missouri,MO,Midwest,West North Central,2013,22.1
-Missouri,MO,Midwest,West North Central,2012,23.9
-Missouri,MO,Midwest,West North Central,2011,25
-Montana,MT,West,Mountain,2017,17.2
-Montana,MT,West,Mountain,2016,18.5
-Montana,MT,West,Mountain,2015,18.9
-Montana,MT,West,Mountain,2014,19.9
-Montana,MT,West,Mountain,2013,19
-Montana,MT,West,Mountain,2012,19.7
-Montana,MT,West,Mountain,2011,22.1
-Nebraska,NE,Midwest,West North Central,2017,15.4
-Nebraska,NE,Midwest,West North Central,2016,17
-Nebraska,NE,Midwest,West North Central,2015,17.1
-Nebraska,NE,Midwest,West North Central,2014,17.3
-Nebraska,NE,Midwest,West North Central,2013,18.5
-Nebraska,NE,Midwest,West North Central,2012,19.7
-Nebraska,NE,Midwest,West North Central,2011,20
-Nevada,NV,West,Mountain,2017,17.6
-Nevada,NV,West,Mountain,2016,16.5
-Nevada,NV,West,Mountain,2015,17.5
-Nevada,NV,West,Mountain,2014,17
-Nevada,NV,West,Mountain,2013,19.4
-Nevada,NV,West,Mountain,2012,18.1
-Nevada,NV,West,Mountain,2011,22.9
-New Hampshire,NH,Northeast,New England,2017,15.7
-New Hampshire,NH,Northeast,New England,2016,18
-New Hampshire,NH,Northeast,New England,2015,15.9
-New Hampshire,NH,Northeast,New England,2014,17.5
-New Hampshire,NH,Northeast,New England,2013,16.2
-New Hampshire,NH,Northeast,New England,2012,17.2
-New Hampshire,NH,Northeast,New England,2011,19.4
-New Jersey,NJ,Northeast,Middle Atlantic,2017,13.7
-New Jersey,NJ,Northeast,Middle Atlantic,2016,14
-New Jersey,NJ,Northeast,Middle Atlantic,2015,13.5
-New Jersey,NJ,Northeast,Middle Atlantic,2014,15.1
-New Jersey,NJ,Northeast,Middle Atlantic,2013,15.7
-New Jersey,NJ,Northeast,Middle Atlantic,2012,17.3
-New Jersey,NJ,Northeast,Middle Atlantic,2011,16.8
-New Mexico,NM,West,Mountain,2017,17.5
-New Mexico,NM,West,Mountain,2016,16.6
-New Mexico,NM,West,Mountain,2015,17.5
-New Mexico,NM,West,Mountain,2014,19.1
-New Mexico,NM,West,Mountain,2013,19.1
-New Mexico,NM,West,Mountain,2012,19.3
-New Mexico,NM,West,Mountain,2011,21.5
-New York,NY,Northeast,Middle Atlantic,2017,14.1
-New York,NY,Northeast,Middle Atlantic,2016,14.2
-New York,NY,Northeast,Middle Atlantic,2015,15.2
-New York,NY,Northeast,Middle Atlantic,2014,14.4
-New York,NY,Northeast,Middle Atlantic,2013,16.6
-New York,NY,Northeast,Middle Atlantic,2012,16.2
-New York,NY,Northeast,Middle Atlantic,2011,18.1
-North Carolina,NC,South,South Atlantic,2017,17.2
-North Carolina,NC,South,South Atlantic,2016,17.9
-North Carolina,NC,South,South Atlantic,2015,19
-North Carolina,NC,South,South Atlantic,2014,19.1
-North Carolina,NC,South,South Atlantic,2013,20.3
-North Carolina,NC,South,South Atlantic,2012,20.9
-North Carolina,NC,South,South Atlantic,2011,21.8
-North Dakota,ND,Midwest,West North Central,2017,18.3
-North Dakota,ND,Midwest,West North Central,2016,19.8
-North Dakota,ND,Midwest,West North Central,2015,18.7
-North Dakota,ND,Midwest,West North Central,2014,19.9
-North Dakota,ND,Midwest,West North Central,2013,21.2
-North Dakota,ND,Midwest,West North Central,2012,21.2
-North Dakota,ND,Midwest,West North Central,2011,21.9
-Ohio,OH,Midwest,East North Central,2017,21.1
-Ohio,OH,Midwest,East North Central,2016,22.5
-Ohio,OH,Midwest,East North Central,2015,21.6
-Ohio,OH,Midwest,East North Central,2014,21
-Ohio,OH,Midwest,East North Central,2013,23.4
-Ohio,OH,Midwest,East North Central,2012,23.3
-Ohio,OH,Midwest,East North Central,2011,25.1
-Oklahoma,OK,South,West South Central,2017,20.1
-Oklahoma,OK,South,West South Central,2016,19.6
-Oklahoma,OK,South,West South Central,2015,22.2
-Oklahoma,OK,South,West South Central,2014,21.1
-Oklahoma,OK,South,West South Central,2013,23.7
-Oklahoma,OK,South,West South Central,2012,23.3
-Oklahoma,OK,South,West South Central,2011,26.1
-Oregon,OR,West,Pacific,2017,16.1
-Oregon,OR,West,Pacific,2016,16.2
-Oregon,OR,West,Pacific,2015,17.1
-Oregon,OR,West,Pacific,2014,17
-Oregon,OR,West,Pacific,2013,17.3
-Oregon,OR,West,Pacific,2012,17.9
-Oregon,OR,West,Pacific,2011,19.7
-Pennsylvania,PA,Northeast,Middle Atlantic,2017,18.7
-Pennsylvania,PA,Northeast,Middle Atlantic,2016,18
-Pennsylvania,PA,Northeast,Middle Atlantic,2015,18.1
-Pennsylvania,PA,Northeast,Middle Atlantic,2014,19.9
-Pennsylvania,PA,Northeast,Middle Atlantic,2013,21
-Pennsylvania,PA,Northeast,Middle Atlantic,2012,21.4
-Pennsylvania,PA,Northeast,Middle Atlantic,2011,22.4
-Rhode Island,RI,Northeast,New England,2017,14.9
-Rhode Island,RI,Northeast,New England,2016,14.4
-Rhode Island,RI,Northeast,New England,2015,15.5
-Rhode Island,RI,Northeast,New England,2014,16.3
-Rhode Island,RI,Northeast,New England,2013,17.4
-Rhode Island,RI,Northeast,New England,2012,17.4
-Rhode Island,RI,Northeast,New England,2011,20
-South Carolina,SC,South,South Atlantic,2017,18.8
-South Carolina,SC,South,South Atlantic,2016,20
-South Carolina,SC,South,South Atlantic,2015,19.7
-South Carolina,SC,South,South Atlantic,2014,21.5
-South Carolina,SC,South,South Atlantic,2013,22
-South Carolina,SC,South,South Atlantic,2012,22.5
-South Carolina,SC,South,South Atlantic,2011,23.1
-South Dakota,SD,Midwest,West North Central,2017,19.3
-South Dakota,SD,Midwest,West North Central,2016,18.1
-South Dakota,SD,Midwest,West North Central,2015,20.1
-South Dakota,SD,Midwest,West North Central,2014,18.6
-South Dakota,SD,Midwest,West North Central,2013,19.6
-South Dakota,SD,Midwest,West North Central,2012,22
-South Dakota,SD,Midwest,West North Central,2011,23
-Tennessee,TN,South,East South Central,2017,22.6
-Tennessee,TN,South,East South Central,2016,22.1
-Tennessee,TN,South,East South Central,2015,21.9
-Tennessee,TN,South,East South Central,2014,24.2
-Tennessee,TN,South,East South Central,2013,24.3
-Tennessee,TN,South,East South Central,2012,24.9
-Tennessee,TN,South,East South Central,2011,23
-Texas,TX,South,West South Central,2017,15.7
-Texas,TX,South,West South Central,2016,14.3
-Texas,TX,South,West South Central,2015,15.2
-Texas,TX,South,West South Central,2014,14.5
-Texas,TX,South,West South Central,2013,15.9
-Texas,TX,South,West South Central,2012,18.2
-Texas,TX,South,West South Central,2011,19.2
-Utah,UT,West,Mountain,2017,8.9
-Utah,UT,West,Mountain,2016,8.8
-Utah,UT,West,Mountain,2015,9.1
-Utah,UT,West,Mountain,2014,9.7
-Utah,UT,West,Mountain,2013,10.3
-Utah,UT,West,Mountain,2012,10.6
-Utah,UT,West,Mountain,2011,11.8
-Vermont,VT,Northeast,New England,2017,15.8
-Vermont,VT,Northeast,New England,2016,17
-Vermont,VT,Northeast,New England,2015,16
-Vermont,VT,Northeast,New England,2014,16.4
-Vermont,VT,Northeast,New England,2013,16.6
-Vermont,VT,Northeast,New England,2012,16.5
-Vermont,VT,Northeast,New England,2011,19.1
-Virginia,VA,South,South Atlantic,2017,16.4
-Virginia,VA,South,South Atlantic,2016,15.3
-Virginia,VA,South,South Atlantic,2015,16.5
-Virginia,VA,South,South Atlantic,2014,19.5
-Virginia,VA,South,South Atlantic,2013,19
-Virginia,VA,South,South Atlantic,2012,19
-Virginia,VA,South,South Atlantic,2011,20.9
-Washington,WA,West,Pacific,2017,13.5
-Washington,WA,West,Pacific,2016,13.9
-Washington,WA,West,Pacific,2015,15
-Washington,WA,West,Pacific,2014,15.3
-Washington,WA,West,Pacific,2013,16.1
-Washington,WA,West,Pacific,2012,17.2
-Washington,WA,West,Pacific,2011,17.5
-West Virginia,WV,South,South Atlantic,2017,26.0
-West Virginia,WV,South,South Atlantic,2016,24.8
-West Virginia,WV,South,South Atlantic,2015,25.7
-West Virginia,WV,South,South Atlantic,2014,26.7
-West Virginia,WV,South,South Atlantic,2013,27.3
-West Virginia,WV,South,South Atlantic,2012,28.2
-West Virginia,WV,South,South Atlantic,2011,28.6
-Wisconsin,WI,Midwest,East North Central,2017,16.0
-Wisconsin,WI,Midwest,East North Central,2016,17.1
-Wisconsin,WI,Midwest,East North Central,2015,17.3
-Wisconsin,WI,Midwest,East North Central,2014,17.4
-Wisconsin,WI,Midwest,East North Central,2013,18.7
-Wisconsin,WI,Midwest,East North Central,2012,20.4
-Wisconsin,WI,Midwest,East North Central,2011,20.9
-Wyoming,WY,West,Mountain,2017,18.7
-Wyoming,WY,West,Mountain,2016,18.9
-Wyoming,WY,West,Mountain,2015,19.1
-Wyoming,WY,West,Mountain,2014,19.5
-Wyoming,WY,West,Mountain,2013,20.6
-Wyoming,WY,West,Mountain,2012,21.8
-Wyoming,WY,West,Mountain,2011,23
+state,abbr,tax_2011,tax_2017,delta_tax,region,division,year,percent
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2017,20.9
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2016,21.5
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2015,21.4
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2014,21.1
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2013,21.5
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2012,23.8
+Alabama,AL,0.425,0.675,0.25000000000000006,South,East South Central,2011,24.3
+Alaska,AK,2,2,0,West,Pacific,2017,21.0
+Alaska,AK,2,2,0,West,Pacific,2016,19
+Alaska,AK,2,2,0,West,Pacific,2015,19.1
+Alaska,AK,2,2,0,West,Pacific,2014,19.9
+Alaska,AK,2,2,0,West,Pacific,2013,22.6
+Alaska,AK,2,2,0,West,Pacific,2012,20.5
+Alaska,AK,2,2,0,West,Pacific,2011,22.9
+Arizona,AZ,2,2,0,West,Mountain,2017,15.6
+Arizona,AZ,2,2,0,West,Mountain,2016,14.7
+Arizona,AZ,2,2,0,West,Mountain,2015,14
+Arizona,AZ,2,2,0,West,Mountain,2014,16.5
+Arizona,AZ,2,2,0,West,Mountain,2013,16.3
+Arizona,AZ,2,2,0,West,Mountain,2012,17.1
+Arizona,AZ,2,2,0,West,Mountain,2011,19.3
+Arkansas,AR,1.15,1.15,0,South,West South Central,2017,22.3
+Arkansas,AR,1.15,1.15,0,South,West South Central,2016,23.6
+Arkansas,AR,1.15,1.15,0,South,West South Central,2015,24.9
+Arkansas,AR,1.15,1.15,0,South,West South Central,2014,24.7
+Arkansas,AR,1.15,1.15,0,South,West South Central,2013,25.9
+Arkansas,AR,1.15,1.15,0,South,West South Central,2012,25
+Arkansas,AR,1.15,1.15,0,South,West South Central,2011,27
+California,CA,0.87,1.87,1,West,Pacific,2017,11.3
+California,CA,0.87,1.87,1,West,Pacific,2016,11
+California,CA,0.87,1.87,1,West,Pacific,2015,11.7
+California,CA,0.87,1.87,1,West,Pacific,2014,12.8
+California,CA,0.87,1.87,1,West,Pacific,2013,12.5
+California,CA,0.87,1.87,1,West,Pacific,2012,12.6
+California,CA,0.87,1.87,1,West,Pacific,2011,13.7
+Colorado,CO,0.84,0.84,0,West,Mountain,2017,14.6
+Colorado,CO,0.84,0.84,0,West,Mountain,2016,15.6
+Colorado,CO,0.84,0.84,0,West,Mountain,2015,15.6
+Colorado,CO,0.84,0.84,0,West,Mountain,2014,15.7
+Colorado,CO,0.84,0.84,0,West,Mountain,2013,17.7
+Colorado,CO,0.84,0.84,0,West,Mountain,2012,17.7
+Colorado,CO,0.84,0.84,0,West,Mountain,2011,18.3
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2017,12.7
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2016,13.3
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2015,13.5
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2014,15.4
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2013,15.5
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2012,16
+Connecticut,CT,3.2,4.125,0.9249999999999998,Northeast,New England,2011,17.1
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2017,17.0
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2016,17.7
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2015,17.4
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2014,19.9
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2013,19.6
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2012,19.7
+Delaware,DE,1.6,1.85,0.25,South,South Atlantic,2011,21.8
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2017,14.3
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2016,14.7
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2015,16
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2014,16.4
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2013,18.8
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2012,19.6
+District of Columbia,DC,2.5,2.92,0.41999999999999993,South,South Atlantic,2011,20.8
+Florida,FL,1.339,1.339,0,South,South Atlantic,2017,16.1
+Florida,FL,1.339,1.339,0,South,South Atlantic,2016,15.5
+Florida,FL,1.339,1.339,0,South,South Atlantic,2015,15.8
+Florida,FL,1.339,1.339,0,South,South Atlantic,2014,17.6
+Florida,FL,1.339,1.339,0,South,South Atlantic,2013,16.8
+Florida,FL,1.339,1.339,0,South,South Atlantic,2012,17.7
+Florida,FL,1.339,1.339,0,South,South Atlantic,2011,19.3
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2017,17.5
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2016,17.9
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2015,17.7
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2014,17.4
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2013,18.8
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2012,20.4
+Georgia,GA,0.37,0.37,0,South,South Atlantic,2011,21.2
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2017,12.8
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2016,13.1
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2015,14.1
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2014,14.1
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2013,13.3
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2012,14.6
+Hawaii,HI,3.1,3.2,0.10000000000000009,West,Pacific,2011,16.8
+Idaho,ID,0.57,0.57,0,West,Mountain,2017,14.3
+Idaho,ID,0.57,0.57,0,West,Mountain,2016,14.5
+Idaho,ID,0.57,0.57,0,West,Mountain,2015,13.8
+Idaho,ID,0.57,0.57,0,West,Mountain,2014,15.9
+Idaho,ID,0.57,0.57,0,West,Mountain,2013,17.2
+Idaho,ID,0.57,0.57,0,West,Mountain,2012,16.4
+Idaho,ID,0.57,0.57,0,West,Mountain,2011,17.2
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2017,15.5
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2016,15.8
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2015,15.1
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2014,16.5
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2013,18
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2012,18.6
+Illinois,IL,0.98,1.98,1,Midwest,East North Central,2011,20.9
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2017,21.8
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2016,21.1
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2015,20.6
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2014,22.9
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2013,21.9
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2012,24
+Indiana,IN,0.995,0.995,0,Midwest,East North Central,2011,25.6
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2017,17.1
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2016,16.7
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2015,18.1
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2014,18.5
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2013,19.5
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2012,18.1
+Iowa,IA,1.36,1.36,0,Midwest,West North Central,2011,20.4
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2017,17.4
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2016,17.2
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2015,17.7
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2014,18.1
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2013,20
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2012,19.4
+Kansas,KS,0.79,1.29,0.5,Midwest,West North Central,2011,22
+Kentucky,KY,0.6,0.6,0,South,East South Central,2017,24.6
+Kentucky,KY,0.6,0.6,0,South,East South Central,2016,24.5
+Kentucky,KY,0.6,0.6,0,South,East South Central,2015,25.9
+Kentucky,KY,0.6,0.6,0,South,East South Central,2014,26.2
+Kentucky,KY,0.6,0.6,0,South,East South Central,2013,26.5
+Kentucky,KY,0.6,0.6,0,South,East South Central,2012,28.3
+Kentucky,KY,0.6,0.6,0,South,East South Central,2011,29
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2017,23.1
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2016,22.8
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2015,21.9
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2014,24
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2013,23.5
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2012,24.8
+Louisiana,LA,0.36,1.08,0.7200000000000001,South,West South Central,2011,25.7
+Maine,ME,2,2,0,Northeast,New England,2017,17.3
+Maine,ME,2,2,0,Northeast,New England,2016,19.8
+Maine,ME,2,2,0,Northeast,New England,2015,19.5
+Maine,ME,2,2,0,Northeast,New England,2014,19.3
+Maine,ME,2,2,0,Northeast,New England,2013,20.2
+Maine,ME,2,2,0,Northeast,New England,2012,20.3
+Maine,ME,2,2,0,Northeast,New England,2011,22.8
+Maryland,MD,2,2,0,South,South Atlantic,2017,13.8
+Maryland,MD,2,2,0,South,South Atlantic,2016,13.7
+Maryland,MD,2,2,0,South,South Atlantic,2015,15.1
+Maryland,MD,2,2,0,South,South Atlantic,2014,14.6
+Maryland,MD,2,2,0,South,South Atlantic,2013,16.4
+Maryland,MD,2,2,0,South,South Atlantic,2012,16.2
+Maryland,MD,2,2,0,South,South Atlantic,2011,19.1
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2017,13.7
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2016,13.6
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2015,14
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2014,14.7
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2013,16.6
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2012,16.4
+Massachusetts,MA,2.51,3.51,1,Northeast,New England,2011,18.2
+Michigan,MI,2,2,0,Midwest,East North Central,2017,19.3
+Michigan,MI,2,2,0,Midwest,East North Central,2016,20.4
+Michigan,MI,2,2,0,Midwest,East North Central,2015,20.7
+Michigan,MI,2,2,0,Midwest,East North Central,2014,21.2
+Michigan,MI,2,2,0,Midwest,East North Central,2013,21.4
+Michigan,MI,2,2,0,Midwest,East North Central,2012,23.3
+Michigan,MI,2,2,0,Midwest,East North Central,2011,23.3
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2017,14.5
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2016,15.2
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2015,16.2
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2014,16.3
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2013,18
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2012,18.8
+Minnesota,MN,1.23,3.04,1.81,Midwest,West North Central,2011,19.1
+Mississippi,MS,0.68,0.68,0,South,East South Central,2017,22.2
+Mississippi,MS,0.68,0.68,0,South,East South Central,2016,22.7
+Mississippi,MS,0.68,0.68,0,South,East South Central,2015,22.5
+Mississippi,MS,0.68,0.68,0,South,East South Central,2014,23
+Mississippi,MS,0.68,0.68,0,South,East South Central,2013,24.8
+Mississippi,MS,0.68,0.68,0,South,East South Central,2012,24
+Mississippi,MS,0.68,0.68,0,South,East South Central,2011,26
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2017,20.8
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2016,22.1
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2015,22.3
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2014,20.6
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2013,22.1
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2012,23.9
+Missouri,MO,0.17,0.17,0,Midwest,West North Central,2011,25
+Montana,MT,1.7,1.7,0,West,Mountain,2017,17.2
+Montana,MT,1.7,1.7,0,West,Mountain,2016,18.5
+Montana,MT,1.7,1.7,0,West,Mountain,2015,18.9
+Montana,MT,1.7,1.7,0,West,Mountain,2014,19.9
+Montana,MT,1.7,1.7,0,West,Mountain,2013,19
+Montana,MT,1.7,1.7,0,West,Mountain,2012,19.7
+Montana,MT,1.7,1.7,0,West,Mountain,2011,22.1
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2017,15.4
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2016,17
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2015,17.1
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2014,17.3
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2013,18.5
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2012,19.7
+Nebraska,NE,0.64,0.64,0,Midwest,West North Central,2011,20
+Nevada,NV,0.8,1.8,1,West,Mountain,2017,17.6
+Nevada,NV,0.8,1.8,1,West,Mountain,2016,16.5
+Nevada,NV,0.8,1.8,1,West,Mountain,2015,17.5
+Nevada,NV,0.8,1.8,1,West,Mountain,2014,17
+Nevada,NV,0.8,1.8,1,West,Mountain,2013,19.4
+Nevada,NV,0.8,1.8,1,West,Mountain,2012,18.1
+Nevada,NV,0.8,1.8,1,West,Mountain,2011,22.9
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2017,15.7
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2016,18
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2015,15.9
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2014,17.5
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2013,16.2
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2012,17.2
+New Hampshire,NH,1.73,1.78,0.050000000000000044,Northeast,New England,2011,19.4
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2017,13.7
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2016,14
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2015,13.5
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2014,15.1
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2013,15.7
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2012,17.3
+New Jersey,NJ,2.7,2.7,0,Northeast,Middle Atlantic,2011,16.8
+New Mexico,NM,1.66,1.66,0,West,Mountain,2017,17.5
+New Mexico,NM,1.66,1.66,0,West,Mountain,2016,16.6
+New Mexico,NM,1.66,1.66,0,West,Mountain,2015,17.5
+New Mexico,NM,1.66,1.66,0,West,Mountain,2014,19.1
+New Mexico,NM,1.66,1.66,0,West,Mountain,2013,19.1
+New Mexico,NM,1.66,1.66,0,West,Mountain,2012,19.3
+New Mexico,NM,1.66,1.66,0,West,Mountain,2011,21.5
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2017,14.1
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2016,14.2
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2015,15.2
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2014,14.4
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2013,16.6
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2012,16.2
+New York,NY,4.35,4.35,0,Northeast,Middle Atlantic,2011,18.1
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2017,17.2
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2016,17.9
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2015,19
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2014,19.1
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2013,20.3
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2012,20.9
+North Carolina,NC,0.45,0.45,0,South,South Atlantic,2011,21.8
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2017,18.3
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2016,19.8
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2015,18.7
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2014,19.9
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2013,21.2
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2012,21.2
+North Dakota,ND,0.44,0.44,0,Midwest,West North Central,2011,21.9
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2017,21.1
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2016,22.5
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2015,21.6
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2014,21
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2013,23.4
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2012,23.3
+Ohio,OH,1.25,1.6,0.3500000000000001,Midwest,East North Central,2011,25.1
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2017,20.1
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2016,19.6
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2015,22.2
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2014,21.1
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2013,23.7
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2012,23.3
+Oklahoma,OK,1.03,1.03,0,South,West South Central,2011,26.1
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2017,16.1
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2016,16.2
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2015,17.1
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2014,17
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2013,17.3
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2012,17.9
+Oregon,OR,1.18,1.32,0.14000000000000012,West,Pacific,2011,19.7
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2017,18.7
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2016,18
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2015,18.1
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2014,19.9
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2013,21
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2012,21.4
+Pennsylvania,PA,1.6,2.6,1,Northeast,Middle Atlantic,2011,22.4
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2017,14.9
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2016,14.4
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2015,15.5
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2014,16.3
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2013,17.4
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2012,17.4
+Rhode Island,RI,3.46,4,0.54,Northeast,New England,2011,20
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2017,18.8
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2016,20
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2015,19.7
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2014,21.5
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2013,22
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2012,22.5
+South Carolina,SC,0.57,0.57,0,South,South Atlantic,2011,23.1
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2017,19.3
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2016,18.1
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2015,20.1
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2014,18.6
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2013,19.6
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2012,22
+South Dakota,SD,1.53,1.53,0,Midwest,West North Central,2011,23
+Tennessee,TN,0.62,0.62,0,South,East South Central,2017,22.6
+Tennessee,TN,0.62,0.62,0,South,East South Central,2016,22.1
+Tennessee,TN,0.62,0.62,0,South,East South Central,2015,21.9
+Tennessee,TN,0.62,0.62,0,South,East South Central,2014,24.2
+Tennessee,TN,0.62,0.62,0,South,East South Central,2013,24.3
+Tennessee,TN,0.62,0.62,0,South,East South Central,2012,24.9
+Tennessee,TN,0.62,0.62,0,South,East South Central,2011,23
+Texas,TX,1.41,1.41,0,South,West South Central,2017,15.7
+Texas,TX,1.41,1.41,0,South,West South Central,2016,14.3
+Texas,TX,1.41,1.41,0,South,West South Central,2015,15.2
+Texas,TX,1.41,1.41,0,South,West South Central,2014,14.5
+Texas,TX,1.41,1.41,0,South,West South Central,2013,15.9
+Texas,TX,1.41,1.41,0,South,West South Central,2012,18.2
+Texas,TX,1.41,1.41,0,South,West South Central,2011,19.2
+Utah,UT,1.7,1.7,0,West,Mountain,2017,8.9
+Utah,UT,1.7,1.7,0,West,Mountain,2016,8.8
+Utah,UT,1.7,1.7,0,West,Mountain,2015,9.1
+Utah,UT,1.7,1.7,0,West,Mountain,2014,9.7
+Utah,UT,1.7,1.7,0,West,Mountain,2013,10.3
+Utah,UT,1.7,1.7,0,West,Mountain,2012,10.6
+Utah,UT,1.7,1.7,0,West,Mountain,2011,11.8
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2017,15.8
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2016,17
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2015,16
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2014,16.4
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2013,16.6
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2012,16.5
+Vermont,VT,2.43,3.08,0.6499999999999999,Northeast,New England,2011,19.1
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2017,16.4
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2016,15.3
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2015,16.5
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2014,19.5
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2013,19
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2012,19
+Virginia,VA,0.3,0.3,0,South,South Atlantic,2011,20.9
+Washington,WA,3.025,3.025,0,West,Pacific,2017,13.5
+Washington,WA,3.025,3.025,0,West,Pacific,2016,13.9
+Washington,WA,3.025,3.025,0,West,Pacific,2015,15
+Washington,WA,3.025,3.025,0,West,Pacific,2014,15.3
+Washington,WA,3.025,3.025,0,West,Pacific,2013,16.1
+Washington,WA,3.025,3.025,0,West,Pacific,2012,17.2
+Washington,WA,3.025,3.025,0,West,Pacific,2011,17.5
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2017,26.0
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2016,24.8
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2015,25.7
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2014,26.7
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2013,27.3
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2012,28.2
+West Virginia,WV,0.55,1.2,0.6499999999999999,South,South Atlantic,2011,28.6
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2017,16.0
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2016,17.1
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2015,17.3
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2014,17.4
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2013,18.7
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2012,20.4
+Wisconsin,WI,2.52,2.52,0,Midwest,East North Central,2011,20.9
+Wyoming,WY,0.6,0.6,0,West,Mountain,2017,18.7
+Wyoming,WY,0.6,0.6,0,West,Mountain,2016,18.9
+Wyoming,WY,0.6,0.6,0,West,Mountain,2015,19.1
+Wyoming,WY,0.6,0.6,0,West,Mountain,2014,19.5
+Wyoming,WY,0.6,0.6,0,West,Mountain,2013,20.6
+Wyoming,WY,0.6,0.6,0,West,Mountain,2012,21.8
+Wyoming,WY,0.6,0.6,0,West,Mountain,2011,23
