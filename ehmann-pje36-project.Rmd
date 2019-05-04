@@ -21,9 +21,9 @@ opts_chunk$set(echo = FALSE)
 
 <br>
 
-#### You can retreive information about US state smoking data from the Centers for Disease Control (CDC) through the Socrata API. The JSON-formatted data for smoking rates by state from 2011-2017 can be accessed from https://chronicdata.cdc.gov/Survey-Data/Table-for-STATE-System-Current-Cigarette-Use-Among/xmxq-jxrr. There are a totoal of 371 JSON objects (rows) in the original dataset (53 states [includes DC, PR, GU] x 7 rows per state). A few columns of interest (renamed) are shown below. The smoking rate (%) and year are nested as 7x2 tibbles for each state.
+#### US state smoking data from the Centers for Disease Control (CDC) is availalbe through the Socrata API. The JSON-formatted data for smoking rates by state from 2011-2017 can be accessed from https://chronicdata.cdc.gov/Survey-Data/Table-for-STATE-System-Current-Cigarette-Use-Among/xmxq-jxrr. There are a total of 371 JSON objects (rows) in the original dataset (53 states [includes DC, PR, GU] x 7 rows per state). A few columns of interest (renamed) are shown below. The smoking rate (%) and year are nested as 7x2 tibbles for each state.
 
-```{r rates, warning = FALSE}
+```{r smoking_rates, warning = FALSE}
 (
 smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>% 
   fromJSON() %>% 
@@ -39,7 +39,7 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
 
 <br>
 
-#### You can retreive information about US state tobacco legislation (Cigarette - $ per pack) from 1995-2019 from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Tax/2dwv-vfam. The data can be accessed as JSON and filtered before retrieving it since there are a total of 152,192 rows in the dataset. A few columns of interest (renamed) are shown below.
+#### US state tobacco taxation (Cigarette - $ per pack) data from 1995-2019 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Tax/2dwv-vfam. The data can be accessed as JSON and filtered before retrieving it since there are a total of 152,192 rows in the complete dataset. I extracted taxation levels in 2011 and 2017, and calculated a change score for each state.
 
 ```{r tax}
 (
@@ -56,6 +56,106 @@ tax <- paste0("https://chronicdata.cdc.gov/resource/7uzt-fasa.json?",  "Year=201
   spread(., year, value) %>% 
   rename(tax_2011 = `2011`, tax_2017 = `2017`) %>% 
   mutate(delta_tax = tax_2017 - tax_2011)
+  )
+```
+
+<br>
+
+#### US state preemption data from 1995-2019 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Preemption/xsta-sbh5. The data can be accessed as JSON and filtered before retrieving it since there are a total of 107,656 rows in the complete dataset. There are 4 main types of preemptions: (1) xxx, (2) xxx, (3) xxx, and (4) xxx. I extracted a count for each state {Min = 0, Max = 4}.
+
+```{r preemptions}
+(
+preemptions <- paste0("https://chronicdata.cdc.gov/resource/ksh7-354r.json?", "year=%272017%27%20AND%20provisionaltvalue=%271%27%20OR%20year=%272017%27%20AND%20provisionaltvalue=%272%27%20LIMIT%2050000") %>%
+  fromJSON() %>% 
+  as_tibble() %>% 
+  rename(state = locationdesc, preemption_type = measuredesc) %>% 
+  filter(state %in% as_vector(smoking_rates[,1])) %>% 
+  mutate(value = as.numeric(provisionaltvalue)) %>% 
+  group_by(state, preemption_type) %>% 
+  summarize(status = mean(value)) %>% 
+  mutate(status = ceiling(status) - 1) %>% 
+  select(state, status) %>% 
+  group_by(state) %>% 
+  summarize(num_of_preemptions = sum(status))
+  )
+```
+
+<br>
+
+#### US state smoking restrictions law (smokefree indoor air) data from 1995-2019 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Smokefree-Ind/32fd-hyzc. The data can be accessed as JSON and filtered before retrieving it since there are a total of 575,360 rows in the complete dataset. I extracted restrictions in Bars, Restaurants, and Workplaces in 2017 (Q4). Missing values were assumed to be indicative of 'No restriction'.
+
+```{r indoor_air}
+(
+indoor_air <- paste0("https://chronicdata.cdc.gov/resource/ag3f-urcg.json?", "year=%272017%27%20AND%20measuredesc=%27Private%20Worksites%27%20AND%20provisionaltvalue!=%270%27",  "%20AND%20quarter=%274%27%20AND%20provisionid=%2720%27%20OR%20year=%272017%27%20AND%20",      "measuredesc=%27Bars%27%20AND%20provisionaltvalue!=%270%27", "%20AND%20quarter=%274%27%20AND%20provisionid=%27234%27%20OR%20year=%272017%27%20AND%20measuredesc=%27Restaurants%27", "%20AND%20provisionaltvalue!=%270%27%20AND%20quarter=%274%27%20AND%20provisionid=%2737%27") %>% 
+  fromJSON() %>% 
+  as_tibble %>% 
+  rename(state = locationdesc, place = measuredesc, restriction = provisionvalue) %>% 
+  filter(state %in% as_vector(smoking_rates[,1])) %>% 
+  select(state, place, restriction) %>% 
+  spread(., place, restriction) %>% 
+  rename(bar_restrictions = `Bars`, work_restrictions = `Private Worksites`, restaurant_restrictions = `Restaurants`) %>% 
+  replace_na(list(bar_restrictions = "None", work_restrictions = "None", restaurant_restrictions = "None"))
+  )
+```
+
+<br>
+
+#### US funding (per capita) data from 1991-2014 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Funding/University-of-Illinois-at-Chicago-Health-Policy-Ce/vw7y-v3uk. The data can be accessed as JSON and filtered before retrieving it since there are a total of 12,514 rows in the complete dataset. I extracted FUNDING & EXPENDITURES using 'Total Per Capita' in 2014 (most recent data), and calculated the percent of total funding utilized that year.
+
+```{r funding}
+(
+funding <- paste0("https://chronicdata.cdc.gov/resource/cfhu-b5vt.json?source=%27Total%20Per%20Capita%27%20AND%20year=%272014%27") %>% 
+  fromJSON() %>% 
+  as_tibble() %>% 
+  rename(state = locationdesc, funding = data_value, funding_type = measuredesc) %>% 
+  filter(state %in% as_vector(smoking_rates[,1])) %>% 
+  select(state, funding, funding_type) %>% 
+  group_by(state, funding_type) %>% 
+  spread(., funding_type, funding) %>% 
+  mutate(expenditures_per_capita = as.numeric(`Expenditures`), 
+         funding_per_capita = as.numeric(`Appropriations/Grants`)) %>% 
+  select(state, funding_per_capita, expenditures_per_capita) %>% 
+  mutate(percent_funding_used = expenditures_per_capita*100/funding_per_capita)
+  )
+```
+
+<br>
+
+#### US state Medicaid data from 2008-2019 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Cessation-Coverage-/Medicaid-Coverage-Of-Cessation-Treatments-And-Barr/ntaa-dtex/data. The data can be accessed as JSON and filtered before retrieving it since there are a total of 27,132 rows in the complete dataset. For the last quarter of 2017, I extracted data regarding 'fee for service plans' and 'managed care plans'.
+
+```{r medicaid}
+(
+medicaid <- paste0("https://chronicdata.cdc.gov/resource/ufr7-5jfh.json?", "year=%272017%27%20AND%20quarter=%274%27%20AND%20measure=%27Medicaid%20Coverage%20of%20Cessation%20Treatments%27") %>% 
+  fromJSON() %>% 
+  as_tibble() %>% 
+  rename(state = locationdesc) %>% 
+  filter(state %in% as_vector(smoking_rates[,1])) %>% 
+  filter(fee_for_service_plans_altvalue != 3, 
+         fee_for_service_plans_altvalue != 4, 
+         managed_care_plans_altvalue != 3, 
+         managed_care_plans_altvalue != 4, 
+         submeasure == "Comprehensive Medicaid Coverage of Treatments") %>% 
+  select(state, fee_for_service_plans, managed_care_plans) %>% 
+  distinct(state, fee_for_service_plans, managed_care_plans) %>% 
+  arrange(state)
+  )
+```
+
+<br>
+
+#### US state quiline usage (incoming calls per 10,000 state population) data from 2010-2016 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Quitline/Quitline-Service-Utilization-2010-To-Present/equ4-92qe. The data can be accessed as JSON and filtered before retrieving it since there are a total of 87,240 rows in the complete dataset. I extracted 'number of incoming calls per 10,000 state population' in 2016 (most recent data), and calculated the average over all 4 quarters of that year.
+
+```{r quitline}
+(
+quitline <- paste0("https://chronicdata.cdc.gov/resource/ew86-dx3i.json?", "variable=%27Incoming%20Calls%20per%2010,000%20State%20Population%27%20AND%20year=%272016%27") %>% 
+  fromJSON() %>% 
+  as_tibble() %>% 
+  rename(state = locationdesc, quitline_percent = value) %>% 
+  filter(state %in% as_vector(smoking_rates[,1])) %>% 
+  mutate(quitline_percent = as.numeric(quitline_percent)) %>% 
+  select(state, quitline_percent) %>% 
+  group_by(state) %>% 
+  summarise(quitline_calls_per_10000 = mean(quitline_percent))
   )
 ```
 
@@ -115,7 +215,7 @@ for (i in 1:length(region_names)) {
 }
 ```
 
-```{r states_table}
+```{r state_table}
 state_table <- as_tibble(data.frame(matrix(nrow = length(states), ncol = 3)))
 colnames(state_table) <- c("state", "region", "division")
 state_table[,1] <- states
@@ -130,14 +230,20 @@ state_table %>% arrange(state)
 
 ```{r merge_data}
 df_clean <- merge(smoking_rates, tax, by = "state") %>% 
+  merge(., preemptions, by = "state") %>% 
+  merge(., indoor_air, by = "state", all = TRUE) %>% 
+  merge(., funding, by = "state") %>% 
+  merge(., medicaid, by = "state") %>% 
+  merge(., quitline, by = "state") %>% 
   merge(., state_table, by = "state") %>% 
+  replace_na(list(bar_restrictions = "None", work_restrictions = "None", restaurant_restrictions = "None")) %>% 
   unnest()
 ```
 
 #### The last step is to export the data as a .csv file which is posted in the GitHub repository.
 
 ```{r write_csv}
-# uncomment the second line to clear the global enviroment of all variables
+# uncomment line 248 to clear the global enviroment of all variables
 df_clean %>% write_csv("smoking_data.csv")
 # rm(list = ls(all = TRUE))
 ```
