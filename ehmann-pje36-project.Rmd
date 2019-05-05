@@ -52,7 +52,7 @@ tax <- paste0("https://chronicdata.cdc.gov/resource/7uzt-fasa.json?",  "Year=201
   select(state, year, tax_value) %>% 
   distinct() %>% 
   group_by(state, year) %>% 
-  summarise(value = mean(tax_value)) %>% 
+  summarize(value = mean(tax_value)) %>% 
   spread(., year, value) %>% 
   rename(tax_2011 = `2011`, tax_2017 = `2017`) %>% 
   mutate(delta_tax = tax_2017 - tax_2011)
@@ -240,11 +240,69 @@ df_clean <- merge(smoking_rates, tax, by = "state") %>%
   unnest()
 ```
 
+<br>
+
+#### I also extracted simple regression parameters (b0 = intercept @ t=0 [2011], b1 = slope) at three different levels (state, division, region) and added them to the dataset.
+
+```{r fxn_extract_regression_int_slope}
+regression <- function(df) {
+  lm(percent ~ year, data = df)
+}
+parameter <- function(df, choice) {
+  tidy(df)[[choice,"estimate"]]
+}
+```
+
+```{r state_regression}
+df_clean <- df_clean %>% 
+  mutate(year = as.numeric(year) - 2011) %>% 
+  group_by(state) %>% 
+  nest() %>% 
+  mutate(lm_fit = map(data, regression)) %>% 
+  mutate(state_int = as.numeric(map2(lm_fit, 1, parameter))) %>% 
+  mutate(state_slope = as.numeric(map2(lm_fit, 2, parameter))) %>% 
+  select(-lm_fit) %>% 
+  unnest() %>% 
+  mutate(year = year + 2011)
+```
+
+```{r division_regression}
+df_clean <- df_clean %>% 
+  mutate(year = year - 2011) %>% 
+  group_by(division) %>% 
+  nest() %>% 
+  mutate(lm_fit = map(data, regression)) %>% 
+  mutate(division_int = as.numeric(map2(lm_fit, 1, parameter))) %>% 
+  mutate(division_slope = as.numeric(map2(lm_fit, 2, parameter))) %>% 
+  select(-lm_fit) %>% 
+  unnest() %>% 
+  mutate(year = year + 2011)
+```
+
+```{r region_regression}
+df_clean <- df_clean %>% 
+  mutate(year = year - 2011) %>% 
+  group_by(region) %>% 
+  nest() %>% 
+  mutate(lm_fit = map(data, regression)) %>% 
+  mutate(region_int = as.numeric(map2(lm_fit, 1, parameter))) %>% 
+  mutate(region_slope = as.numeric(map2(lm_fit, 2, parameter))) %>% 
+  select(-lm_fit) %>% 
+  unnest() %>% 
+  mutate(year = year + 2011)
+```
+
+<br>
+
 #### The last step is to export the data as a .csv file which is posted in the GitHub repository.
 
 ```{r write_csv}
-# uncomment line 248 to clear the global enviroment of all variables
-df_clean %>% write_csv("smoking_data.csv")
+# uncomment line 306 to clear the global enviroment of all variables
+df_clean %>% select(state, abbr, region, division, year, percent, state_int, state_slope, division_int, division_slope, 
+                    region_int, region_slope, tax_2011, tax_2017, delta_tax, num_of_preemptions, bar_restrictions, 
+                    work_restrictions, restaurant_restrictions, funding_per_capita, expenditures_per_capita, percent_funding_used, 
+                    fee_for_service_plans, managed_care_plans, quitline_calls_per_10000) %>% 
+  write_csv("smoking_data.csv")
 # rm(list = ls(all = TRUE))
 ```
 
@@ -264,8 +322,92 @@ data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_
 
 <br>
 
+#### A simple line plot grouped by REGION shows a similar linear decrease in '% smokers' for all 4 US regions. However, the MIDWEST/SOUTH have much higher smoking rate for all years than the NORTHEAST/WEST.
+
+```{r region_line_plot}
+region_means <- data %>% 
+  select(state, region, year, percent) %>% 
+  group_by(region, year) %>% 
+  summarize(average = mean(percent))
+
+ggplot(region_means, mapping = aes(x = year, y = average, color = region, group = region)) + 
+  geom_point() + 
+  geom_line() + 
+  xlab("Year") + 
+  ylab("Current Cigarette Smokers (%)") + 
+  ggtitle("Smoking Rates (%) by US Region") + 
+  scale_x_continuous(breaks = pretty(region_means$year, n = 7))
+```
+
+<br>
+
+#### The table below illustrates the variability in starting smoking rate (intercept) and change over time (slope) for the plot above.
+
+```{r region_int_slope}
+# SHOW TABLE
+```
+
+<br>
+
+#### A simple line plot grouped by DIVISION (sub-region) shows more variability than when grouped by REGION.
+
+```{r division_line_plot}
+division_means <- data %>% 
+  select(state, division, year, percent) %>% 
+  group_by(division, year) %>% 
+  summarize(average = mean(percent))
+
+ggplot(division_means, mapping = aes(x = year, y = average, color = division, group = division)) + 
+  geom_point() + 
+  geom_line() + 
+  xlab("Year") + 
+  ylab("Current Cigarette Smokers (%)") + 
+  ggtitle("Smoking Rates (%) by US Division") + 
+  scale_x_continuous(breaks = pretty(region_means$year, n = 7))
+```
+
+<br>
+
+#### The table below shows illustrates differences in starting smoking rate (intercept) and rate of change (slope).
+
+```{r division_int_slope}
+# SHOW TABLE
+```
+
+<br>
+
+#### You can see a lot of variability each State's smoking trend over 2011-2017.
+
+```{r state_line_plot}
+ggplot(data, mapping = aes(x = year, y = percent, color = state, group = state)) + 
+  geom_point() + 
+  geom_line() + 
+  xlab("Year") + 
+  ylab("Current Cigarette Smokers (%)") + 
+  ggtitle("Smoking Rates (%) by State") + 
+  scale_x_continuous(breaks = pretty(region_means$year, n = 7))
+```
+
+<br>
+
+#### Top 5 STATE intercepts.
+
+```{r state_int_slope}
+# SHOW TOP AND BOTTOM INTS & SLOPES
+```
+
+<br>
+
+SHOW DIFFERENCES BY REGION
+
+<br>
+
+ANALYSIS OF FACTORS INFLUENCING INT AND SLOPE
+
+<br>
+
 #### Display information about the packages used, their versions, and the version of R that was used.
 
-```{r sessionInfo}
+```{r session_info}
 devtools::session_info()
 ```
