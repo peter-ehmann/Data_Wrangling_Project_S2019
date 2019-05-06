@@ -7,7 +7,7 @@ My final class project for MSDS 597 - Data Wrangling and Husbandry (Spring, 2019
 
 [8-16] Necessary R libraries.
 
-[20-311] Code to extract and format data.
+[20-311] Code to scrape, format, and export data.
 
 [315-881] Code for data analysis and visualization.
 
