@@ -32,7 +32,7 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
   select(state, abbr, year, percent) %>% 
   group_by(state, abbr) %>% 
   nest(.key = smoking_rate) %>% 
-  filter(abbr != "PR",
+  filter(abbr != "PR", 
          abbr != "GU")
   )
 ```
@@ -43,41 +43,41 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
 
 ```{r tax}
 (
-tax <- paste0("https://chronicdata.cdc.gov/resource/7uzt-fasa.json?", "Year=2011%20AND%20MeasureDesc=%27Cigarette%27%20OR%20Year=2017%20AND%20MeasureDesc=%27Cigarette%27") %>% 
-  fromJSON() %>% 
-  as_tibble() %>% 
-  rename(state = locationdesc, tax_value = provisionvalue) %>% 
-  filter(state %in% as_vector(smoking_rates[,1])) %>% 
-  mutate(tax_value = as.numeric(tax_value)) %>% 
-  select(state, year, tax_value) %>% 
-  distinct() %>% 
-  group_by(state, year) %>% 
-  summarize(value = mean(tax_value)) %>% 
-  spread(., year, value) %>% 
-  rename(tax_2011 = `2011`, tax_2017 = `2017`) %>% 
-  mutate(delta_tax = tax_2017 - tax_2011)
-  )
+  tax <- "https://chronicdata.cdc.gov/resource/7uzt-fasa.json?Year=2011%20AND%20MeasureDesc=%27Cigarette%27%20OR%20Year=2017%20AND%20MeasureDesc=%27Cigarette%27" %>% 
+    fromJSON() %>% 
+    as_tibble() %>% 
+    rename(state = locationdesc, tax_value = provisionvalue) %>% 
+    filter(state %in% as_vector(smoking_rates[,1])) %>% 
+    mutate(tax_value = as.numeric(tax_value)) %>% 
+    select(state, year, tax_value) %>% 
+    distinct() %>% 
+    group_by(state, year) %>% 
+    summarize(value = mean(tax_value)) %>% 
+    spread(., year, value) %>% 
+    rename(tax_2011 = `2011`, tax_2017 = `2017`) %>% 
+    mutate(delta_tax = tax_2017 - tax_2011)
+)
 ```
 
 <br>
 
-#### US state preemption data from 1995-2019 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Preemption/xsta-sbh5. The data can be accessed as JSON and filtered before retrieving it since there are a total of 107,656 rows in the complete dataset. There are 4 main types of preemptions: (1) xxx, (2) xxx, (3) xxx, and (4) xxx. I extracted a count for each state {Min = 0, Max = 4}.
+#### US state preemption data from 1995-2019 is also available from the CDC through the Socrata API. Information about the dataset can be obtained at https://chronicdata.cdc.gov/Legislation/CDC-STATE-System-Tobacco-Legislation-Preemption/xsta-sbh5. The data can be accessed as JSON and filtered before retrieving it since there are a total of 107,656 rows in the complete dataset. There are 4 main types of preemptions: (1) advertising, (2) licensure, (3) smokefree indoor air, and (4) youth access. I extracted a count for each state {Min = 0, Max = 4}.
 
 ```{r preemptions}
 (
-preemptions <- paste0("https://chronicdata.cdc.gov/resource/ksh7-354r.json?", "year=%272017%27%20AND%20provisionaltvalue=%271%27%20OR%20year=%272017%27%20AND%20provisionaltvalue=%272%27%20LIMIT%2050000") %>%
-  fromJSON() %>% 
-  as_tibble() %>% 
-  rename(state = locationdesc, preemption_type = measuredesc) %>% 
-  filter(state %in% as_vector(smoking_rates[,1])) %>% 
-  mutate(value = as.numeric(provisionaltvalue)) %>% 
-  group_by(state, preemption_type) %>% 
-  summarize(status = mean(value)) %>% 
-  mutate(status = ceiling(status) - 1) %>% 
-  select(state, status) %>% 
-  group_by(state) %>% 
-  summarize(num_of_preemptions = sum(status))
-  )
+  preemptions <- "https://chronicdata.cdc.gov/resource/ksh7-354r.json?year=%272017%27%20AND%20provisionaltvalue=%271%27%20OR%20year=%272017%27%20AND%20provisionaltvalue=%272%27%20LIMIT%2050000" %>% 
+    fromJSON() %>% 
+    as_tibble() %>% 
+    rename(state = locationdesc, preemption_type = measuredesc) %>% 
+    filter(state %in% as_vector(smoking_rates[,1])) %>% 
+    mutate(value = as.numeric(provisionaltvalue)) %>% 
+    group_by(state, preemption_type) %>% 
+    summarize(status = mean(value)) %>% 
+    mutate(status = ceiling(status) - 1) %>% 
+    select(state, status) %>% 
+    group_by(state) %>% 
+    summarize(num_of_preemptions = sum(status))
+)
 ```
 
 <br>
@@ -86,16 +86,16 @@ preemptions <- paste0("https://chronicdata.cdc.gov/resource/ksh7-354r.json?", "y
 
 ```{r indoor_air}
 (
-indoor_air <- paste0("https://chronicdata.cdc.gov/resource/ag3f-urcg.json?", "year=%272017%27%20AND%20measuredesc=%27Private%20Worksites%27%20AND%20provisionaltvalue!=%270%27",  "%20AND%20quarter=%274%27%20AND%20provisionid=%2720%27%20OR%20year=%272017%27%20AND%20", "measuredesc=%27Bars%27%20AND%20provisionaltvalue!=%270%27", "%20AND%20quarter=%274%27%20AND%20provisionid=%27234%27%20OR%20year=%272017%27%20AND%20measuredesc=%27Restaurants%27", "%20AND%20provisionaltvalue!=%270%27%20AND%20quarter=%274%27%20AND%20provisionid=%2737%27") %>% 
-  fromJSON() %>% 
-  as_tibble %>% 
-  rename(state = locationdesc, place = measuredesc, restriction = provisionvalue) %>% 
-  filter(state %in% as_vector(smoking_rates[,1])) %>% 
-  select(state, place, restriction) %>% 
-  spread(., place, restriction) %>% 
-  rename(bar_restrictions = `Bars`, work_restrictions = `Private Worksites`, restaurant_restrictions = `Restaurants`) %>% 
-  replace_na(list(bar_restrictions = "None", work_restrictions = "None", restaurant_restrictions = "None"))
-  )
+  indoor_air <- "https://chronicdata.cdc.gov/resource/ag3f-urcg.json?year=%272017%27%20AND%20measuredesc=%27Private%20Worksites%27%20AND%20provisionaltvalue!=%270%27%20AND%20quarter=%274%27%20AND%20provisionid=%2720%27%20OR%20year=%272017%27%20AND%20measuredesc=%27Bars%27%20AND%20provisionaltvalue!=%270%27%20AND%20quarter=%274%27%20AND%20provisionid=%27234%27%20OR%20year=%272017%27%20AND%20measuredesc=%27Restaurants%27%20AND%20provisionaltvalue!=%270%27%20AND%20quarter=%274%27%20AND%20provisionid=%2737%27" %>% 
+    fromJSON() %>% 
+    as_tibble %>% 
+    rename(state = locationdesc, place = measuredesc, restriction = provisionvalue) %>% 
+    filter(state %in% as_vector(smoking_rates[,1])) %>% 
+    select(state, place, restriction) %>% 
+    spread(., place, restriction) %>% 
+    rename(bar_restrictions = `Bars`, work_restrictions = `Private Worksites`, restaurant_restrictions = `Restaurants`) %>% 
+    replace_na(list(bar_restrictions = "None", work_restrictions = "None", restaurant_restrictions = "None"))
+)
 ```
 
 <br>
@@ -104,19 +104,19 @@ indoor_air <- paste0("https://chronicdata.cdc.gov/resource/ag3f-urcg.json?", "ye
 
 ```{r funding}
 (
-funding <- paste0("https://chronicdata.cdc.gov/resource/cfhu-b5vt.json?source=%27Total%20Per%20Capita%27%20AND%20year=%272014%27") %>% 
-  fromJSON() %>% 
-  as_tibble() %>% 
-  rename(state = locationdesc, funding = data_value, funding_type = measuredesc) %>% 
-  filter(state %in% as_vector(smoking_rates[,1])) %>% 
-  select(state, funding, funding_type) %>% 
-  group_by(state, funding_type) %>% 
-  spread(., funding_type, funding) %>% 
-  mutate(expenditures_per_capita = as.numeric(`Expenditures`), 
-         funding_per_capita = as.numeric(`Appropriations/Grants`)) %>% 
-  select(state, funding_per_capita, expenditures_per_capita) %>% 
-  mutate(percent_funding_used = expenditures_per_capita*100/funding_per_capita)
-  )
+  funding <- "https://chronicdata.cdc.gov/resource/cfhu-b5vt.json?source=%27Total%20Per%20Capita%27%20AND%20year=%272014%27" %>% 
+    fromJSON() %>% 
+    as_tibble() %>% 
+    rename(state = locationdesc, funding = data_value, funding_type = measuredesc) %>% 
+    filter(state %in% as_vector(smoking_rates[,1])) %>% 
+    select(state, funding, funding_type) %>% 
+    group_by(state, funding_type) %>% 
+    spread(., funding_type, funding) %>% 
+    mutate(expenditures_per_capita = as.numeric(`Expenditures`), 
+           funding_per_capita = as.numeric(`Appropriations/Grants`)) %>% 
+    select(state, funding_per_capita, expenditures_per_capita) %>% 
+    mutate(percent_funding_used = expenditures_per_capita*100/funding_per_capita)
+)
 ```
 
 <br>
@@ -125,20 +125,20 @@ funding <- paste0("https://chronicdata.cdc.gov/resource/cfhu-b5vt.json?source=%2
 
 ```{r medicaid}
 (
-medicaid <- paste0("https://chronicdata.cdc.gov/resource/ufr7-5jfh.json?", "year=%272017%27%20AND%20quarter=%274%27%20AND%20measure=%27Medicaid%20Coverage%20of%20Cessation%20Treatments%27") %>% 
-  fromJSON() %>% 
-  as_tibble() %>% 
-  rename(state = locationdesc) %>% 
-  filter(state %in% as_vector(smoking_rates[,1])) %>% 
-  filter(fee_for_service_plans_altvalue != 3, 
-         fee_for_service_plans_altvalue != 4, 
-         managed_care_plans_altvalue != 3, 
-         managed_care_plans_altvalue != 4, 
-         submeasure == "Comprehensive Medicaid Coverage of Treatments") %>% 
-  select(state, fee_for_service_plans, managed_care_plans) %>% 
-  distinct(state, fee_for_service_plans, managed_care_plans) %>% 
-  arrange(state)
-  )
+  medicaid <- "https://chronicdata.cdc.gov/resource/ufr7-5jfh.json?year=%272017%27%20AND%20quarter=%274%27%20AND%20measure=%27Medicaid%20Coverage%20of%20Cessation%20Treatments%27" %>% 
+    fromJSON() %>% 
+    as_tibble() %>% 
+    rename(state = locationdesc) %>% 
+    filter(state %in% as_vector(smoking_rates[,1])) %>% 
+    filter(fee_for_service_plans_altvalue != 3, 
+           fee_for_service_plans_altvalue != 4, 
+           managed_care_plans_altvalue != 3, 
+           managed_care_plans_altvalue != 4, 
+           submeasure == "Comprehensive Medicaid Coverage of Treatments") %>% 
+    select(state, fee_for_service_plans, managed_care_plans) %>% 
+    distinct(state, fee_for_service_plans, managed_care_plans) %>% 
+    arrange(state)
+)
 ```
 
 <br>
@@ -147,16 +147,16 @@ medicaid <- paste0("https://chronicdata.cdc.gov/resource/ufr7-5jfh.json?", "year
 
 ```{r quitline}
 (
-quitline <- paste0("https://chronicdata.cdc.gov/resource/ew86-dx3i.json?", "variable=%27Incoming%20Calls%20per%2010,000%20State%20Population%27%20AND%20year=%272016%27") %>% 
-  fromJSON() %>% 
-  as_tibble() %>% 
-  rename(state = locationdesc, quitline_percent = value) %>% 
-  filter(state %in% as_vector(smoking_rates[,1])) %>% 
-  mutate(quitline_percent = as.numeric(quitline_percent)) %>% 
-  select(state, quitline_percent) %>% 
-  group_by(state) %>% 
-  summarise(quitline_calls_per_10000 = mean(quitline_percent))
-  )
+  quitline <- "https://chronicdata.cdc.gov/resource/ew86-dx3i.json?variable=%27Incoming%20Calls%20per%2010,000%20State%20Population%27%20AND%20year=%272016%27" %>% 
+    fromJSON() %>% 
+    as_tibble() %>% 
+    rename(state = locationdesc, quitline_percent = value) %>% 
+    filter(state %in% as_vector(smoking_rates[,1])) %>% 
+    mutate(quitline_percent = as.numeric(quitline_percent)) %>% 
+    select(state, quitline_percent) %>% 
+    group_by(state) %>% 
+    summarise(quitline_calls_per_10000 = mean(quitline_percent))
+)
 ```
 
 <br>
@@ -166,7 +166,7 @@ quitline <- paste0("https://chronicdata.cdc.gov/resource/ew86-dx3i.json?", "vari
 ```{r scrape_wiki_html}
 (
 states_html <- read_html("https://simple.wikipedia.org/wiki/List_of_regions_of_the_United_States")
-  )
+)
 
 states <- states_html %>% 
   html_nodes(xpath = "//div/ul/li/ul/li/ul/li") %>% 
@@ -242,7 +242,7 @@ df_clean <- merge(smoking_rates, tax, by = "state") %>%
 
 <br>
 
-#### I also extracted simple linear regression parameters (b0 = intercept @ t=0 [2011], b1 = slope) at three different levels (state, division, region) and added them to the dataset.
+#### I also extracted simple linear regression parameters (b0 = intercept @ t=0 [2011], b1 = slope) and residuals (observed - expected) at three different levels (state, division, region) and added them to the dataset.
 
 ```{r fxn_extract_regression_int_slope}
 regression <- function(df) {
@@ -263,6 +263,8 @@ df_clean <- df_clean %>%
   mutate(state_slope = as.numeric(map2(lm_fit, 2, parameter))) %>% 
   select(-lm_fit) %>% 
   unnest() %>% 
+  mutate(percent = as.numeric(percent)) %>% 
+  mutate(state_resid = percent - (state_int + state_slope*year)) %>% 
   mutate(year = year + 2011)
 ```
 
@@ -276,6 +278,7 @@ df_clean <- df_clean %>%
   mutate(division_slope = as.numeric(map2(lm_fit, 2, parameter))) %>% 
   select(-lm_fit) %>% 
   unnest() %>% 
+  mutate(division_resid = percent - (division_int + division_slope*year)) %>% 
   mutate(year = year + 2011)
 ```
 
@@ -289,6 +292,7 @@ df_clean <- df_clean %>%
   mutate(region_slope = as.numeric(map2(lm_fit, 2, parameter))) %>% 
   select(-lm_fit) %>% 
   unnest() %>% 
+  mutate(region_resid = percent - (region_int + region_slope*year)) %>% 
   mutate(year = year + 2011)
 ```
 
@@ -298,8 +302,8 @@ df_clean <- df_clean %>%
 
 ```{r write_csv}
 # uncomment line 306 to clear the global enviroment of all variables
-df_clean %>% select(state, abbr, region, division, year, percent, state_int, state_slope, division_int, division_slope, 
-                    region_int, region_slope, tax_2011, tax_2017, delta_tax, num_of_preemptions, bar_restrictions, 
+df_clean %>% select(state, abbr, region, division, year, percent, state_int, state_slope, state_resid, division_int, division_slope, 
+                    division_resid, region_int, region_slope, region_resid, tax_2011, tax_2017, delta_tax, num_of_preemptions, bar_restrictions, 
                     work_restrictions, restaurant_restrictions, funding_per_capita, expenditures_per_capita, percent_funding_used, 
                     fee_for_service_plans, managed_care_plans, quitline_calls_per_10000) %>% 
   write_csv("smoking_data.csv")
@@ -316,8 +320,8 @@ df_clean %>% select(state, abbr, region, division, year, percent, state_int, sta
 
 ```{r import_clean_data, message = FALSE}
 (
-data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv")
-  )
+  data <- read_csv("https://raw.githubusercontent.com/peter-ehmann/Data_Wrangling_Project_S2019/master/smoking_data.csv")
+)
 ```
 
 <br>
@@ -419,7 +423,7 @@ data %>% distinct(state, region, percent_funding_used) %>%
 
 <br>
 
-#### MEDICAID.
+#### MEDICAID. Most states do not provide coverage, and trends are even across all regions.
 
 ```{r medicaid_analysis}
 medicaid_analysis <- data %>% 
@@ -476,18 +480,16 @@ summary(
 #### A simple line plot grouped by REGION shows a similar linear decrease in '% smokers' for all 4 US regions. However, the MIDWEST/SOUTH have much higher smoking rate for all years than the NORTHEAST/WEST.
 
 ```{r region_line_plot}
-region_means <- data %>% 
-  select(state, region, year, percent) %>% 
+data %>% select(state, region, year, percent) %>% 
   group_by(region, year) %>% 
-  summarize(average = mean(percent))
-
-ggplot(region_means, mapping = aes(x = year, y = average, color = region, group = region)) + 
-  geom_point() + 
-  geom_line() + 
-  xlab("Year") + 
-  ylab("Current Cigarette Smokers (%)") + 
-  ggtitle("Smoking Rates (%) by US Region") + 
-  scale_x_continuous(breaks = pretty(region_means$year, n = 7))
+  summarize(average = mean(percent)) %>% 
+  ggplot(., mapping = aes(x = year, y = average, color = region, group = region)) + 
+    geom_point() + 
+    geom_line() + 
+    xlab("Year") + 
+    ylab("Current Cigarette Smokers (%)") + 
+    ggtitle("Smoking Rates (%) by US Region") + 
+    scale_x_continuous(breaks = pretty(c("2011":"2017"), n = 7))
 ```
 
 <br>
@@ -495,7 +497,67 @@ ggplot(region_means, mapping = aes(x = year, y = average, color = region, group 
 #### The table below shows approximate smoking rates in 2011 (intercept) and rate of change from 2011-2017 (slope) by REGION (4).
 
 ```{r region_int_slope}
-data %>% distinct(region, region_int, region_slope)
+kable(
+  data %>% distinct(region, region_int, region_slope)
+)
+```
+
+<br>
+
+#### As seen in one-way ANOVA results below, there are significant differences between the region's intercept coefficient. Follow-up Tukey HSD tests indicate differences between West/Midwest, South/Northeast, and West/South. The results are visualized in the boxplot below.
+
+```{r region_int_analysis}
+summary(
+  aov(state_int ~ region, data = data %>% distinct(state, region, state_int))
+)
+
+TukeyHSD(
+  aov(state_int ~ region, data = data %>% distinct(state, region, state_int))
+)
+
+data %>% distinct(state, region, state_int) %>% 
+  ggplot(., mapping = aes(x = region, y = state_int, color = region)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Region") + 
+    ylab("State Intercept (b0)") + 
+    ggtitle("State Intercept Coefficients by Region")
+```
+
+<br>
+
+#### As seen in one-way ANOVA results below, there are no differences between the region's slope coefficient. Therefore, no follow-up analysis is needed. The results are visualized in the boxplot below.
+
+```{r region_slope_analysis}
+summary(
+  aov(state_slope ~ region, data = data %>% distinct(state, region, state_slope))
+)
+
+data %>% distinct(state, region, state_slope) %>% 
+  ggplot(., mapping = aes(x = region, y = state_slope, color = region)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Region") + 
+    ylab("State Slope (b1)") + 
+    ggtitle("State Slope Coefficients by Region")
+```
+
+<br>
+
+#### Summary of state_int.
+
+```{r int_summary}
+summary(data %>% distinct(state, state_int) %>% select(state_int))
+```
+
+<br>
+
+#### Summary of state_slope.
+
+```{r int_summary}
+summary(data %>% distinct(state, state_slope) %>% select(state_slope))
 ```
 
 <br>
@@ -503,18 +565,16 @@ data %>% distinct(region, region_int, region_slope)
 #### A simple line plot grouped by DIVISION (sub-region) shows more variability than when grouped by REGION.
 
 ```{r division_line_plot}
-division_means <- data %>% 
-  select(state, division, year, percent) %>% 
+data %>% select(state, division, year, percent) %>% 
   group_by(division, year) %>% 
-  summarize(average = mean(percent))
-
-ggplot(division_means, mapping = aes(x = year, y = average, color = division, group = division)) + 
-  geom_point() + 
-  geom_line() + 
-  xlab("Year") + 
-  ylab("Current Cigarette Smokers (%)") + 
-  ggtitle("Smoking Rates (%) by US Division") + 
-  scale_x_continuous(breaks = pretty(division_means$year, n = 7))
+  summarize(average = mean(percent)) %>% 
+  ggplot(., mapping = aes(x = year, y = average, color = division, group = division)) + 
+    geom_point() + 
+    geom_line() + 
+    xlab("Year") + 
+    ylab("Current Cigarette Smokers (%)") + 
+    ggtitle("Smoking Rates (%) by US Division") + 
+    scale_x_continuous(breaks = pretty(c("2011":"2017"), n = 7))
 ```
 
 <br>
@@ -522,7 +582,9 @@ ggplot(division_means, mapping = aes(x = year, y = average, color = division, gr
 #### The table below shows approximate smoking rates in 2011 (intercept) and rate of change from 2011-2017 (slope) by DIVISION (9).
 
 ```{r division_int_slope}
-data %>% distinct(division, division_int, division_slope)
+kable(
+  data %>% distinct(division, division_int, division_slope)
+)
 ```
 
 <br>
@@ -536,7 +598,7 @@ ggplot(data, mapping = aes(x = year, y = percent, color = state, group = state))
   xlab("Year") + 
   ylab("Current Cigarette Smokers (%)") + 
   ggtitle("Smoking Rates (%) by State") + 
-  scale_x_continuous(breaks = pretty(data$year, n = 7)) + 
+  scale_x_continuous(breaks = pretty(c("2011":"2017"), n = 7)) + 
   theme(legend.position = "none")
 ```
 
@@ -545,19 +607,23 @@ ggplot(data, mapping = aes(x = year, y = percent, color = state, group = state))
 #### Top 5 STATE intercepts (highest smoking rates in 2011).
 
 ```{r state_int_high}
-data %>% distinct(state, state_int) %>% 
-  arrange(desc(state_int)) %>% 
-  head()
+kable(
+  data %>% distinct(state, state_int) %>% 
+    arrange(desc(state_int)) %>% 
+    head(., 5)
+)
 ```
 
 <br>
 
-#### Bottom 4 STATE intercepts (lowest smoking rates in 2011).
+#### Bottom 5 STATE intercepts (lowest smoking rates in 2011).
 
 ```{r state_int_low}
-data %>% distinct(state, state_int) %>% 
-  arrange(state_int) %>% 
-  head()
+kable(
+  data %>% distinct(state, state_int) %>% 
+    arrange(state_int) %>% 
+    head(., 5)
+)
 ```
 
 <br>
@@ -565,9 +631,11 @@ data %>% distinct(state, state_int) %>%
 #### Largest (most negative) STATE slopes (greatest rate of change in reducing smokers 2011-2017).
 
 ```{r state_slope_high}
-data %>% distinct(state, state_slope) %>% 
-  arrange(state_slope) %>% 
-  head()
+kable(
+  data %>% distinct(state, state_slope) %>% 
+    arrange(state_slope) %>% 
+    head(., 5)
+)
 ```
 
 <br>
@@ -575,9 +643,11 @@ data %>% distinct(state, state_slope) %>%
 #### Smallest (least negative) STATE slopes (smallest rate of change in reducing smokers 2011-2017).
 
 ```{r state_slope_low}
-data %>% distinct(state, state_slope) %>% 
-  arrange(desc(state_slope)) %>% 
-  head()
+kable(
+  data %>% distinct(state, state_slope) %>% 
+    arrange(desc(state_slope)) %>% 
+    head(., 5)
+)
 ```
 
 <br>
@@ -600,11 +670,215 @@ data %>% distinct(state, state_int, state_slope) %>%
 
 <br>
 
-### To wrap up, we will investigate factors that influence STATE intercept and slope coefficients.
+### To wrap up, we will investigate factors that influence state intercept and slope coefficients.
 
 <br>
 
-ANALYSIS OF FACTORS INFLUENCING INT AND SLOPE
+#### TAXATION. Taxes in 2011 were significantly negatively correlated with the intercept coeffienct (top). However, change in taxation from 2011-2017 did not influence change in smoking rates (bottom).
+
+```{r tax_intercept}
+summary(
+  lm(state_int ~ tax_2011, data = data %>% distinct(state, state_int, tax_2011))
+)
+
+data %>% distinct(state, state_int, tax_2011) %>% 
+  ggplot(., mapping = aes(x = tax_2011, y = state_int)) + 
+    geom_point() + 
+    stat_smooth(method = "lm") +
+    xlab("Taxation in 2011 ($ per carton)") + 
+    ylab("Intercept (b0)") +
+    ggtitle("Correlation between state intercept and taxation in 2011")
+```
+
+```{r tax_slope}
+summary(
+  lm(state_slope ~ tax_2011 + tax_2017, data = data %>% distinct(state, state_slope, tax_2011, tax_2017))
+)
+
+data %>% distinct(state, state_int, delta_tax) %>% 
+  ggplot(., mapping = aes(x = delta_tax, y = state_int)) + 
+    geom_point() + 
+    stat_smooth(method = "lm") +
+    xlab("Change in Tax from 2011-2017 ($ per carton)") + 
+    ylab("Slope (b1)") +
+    ggtitle("Correlation between state slope and change in taxation 2011-2017")
+```
+
+<br>
+
+#### PREEMPTION. Number of preemptions did not have any effect on the intercept (top) or slope (bottom) state coefficients.
+
+```{r preemption_intercept}
+summary(
+  aov(state_int ~ preemptions, data = data %>% distinct(state, state_int, num_of_preemptions) %>% mutate(preemptions = as.factor(num_of_preemptions)))
+)
+
+data %>% distinct(state, state_int, num_of_preemptions) %>% mutate(preemptions = as.factor(num_of_preemptions)) %>% 
+  ggplot(., mapping = aes(x = preemptions, y = state_int, color = preemptions)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Number of Preemptions (#)") + 
+    ylab("State Intercept (b0)") + 
+    ggtitle("State Intercept Coefficients by Number of Preemptions")
+```
+
+```{r preemption_slope}
+summary(
+  aov(state_slope ~ preemptions, data = data %>% distinct(state, state_slope, num_of_preemptions) %>% mutate(preemptions = as.factor(num_of_preemptions)))
+)
+
+data %>% distinct(state, state_slope, num_of_preemptions) %>% mutate(preemptions = as.factor(num_of_preemptions)) %>% 
+  ggplot(., mapping = aes(x = preemptions, y = state_slope, color = preemptions)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Number of Preemptions (#)") + 
+    ylab("State Slope (b1)") + 
+    ggtitle("State Slope Coefficients by Number of Preemptions")
+```
+
+<br>
+
+#### INDOOR SMOKING - focus on bar restrictions. Smoking prevalence at baseline (intercept) were significantly lower in states with full restrictions on smoking in bars, although if had no effect on change in smoking prevalence over time.
+
+```{r indoor_intercept}
+summary(
+  aov(state_int ~ bar_restrictions, data = data %>% 
+                                            distinct(state, state_int, bar_restrictions) %>% 
+                                            filter(bar_restrictions != "Designated Areas", 
+                                                   bar_restrictions != "Separate Ventilated Areas"))
+)
+
+data %>% distinct(state, state_int, bar_restrictions) %>% filter(bar_restrictions != "Designated Areas", 
+                                                                 bar_restrictions != "Separate Ventilated Areas") %>% 
+  ggplot(., mapping = aes(x = bar_restrictions, y = state_int, color = bar_restrictions)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Bar Restriction") + 
+    ylab("State Intercept (b0)") + 
+    ggtitle("State Intercept Coefficients by Bar Restriction")
+```
+
+```{r indoor_slope}
+summary(
+  aov(state_slope ~ bar_restrictions, data = data %>% 
+                                            distinct(state, state_slope, bar_restrictions) %>% 
+                                            filter(bar_restrictions != "Designated Areas", 
+                                                   bar_restrictions != "Separate Ventilated Areas"))
+)
+
+data %>% distinct(state, state_slope, bar_restrictions) %>% filter(bar_restrictions != "Designated Areas", 
+                                                                   bar_restrictions != "Separate Ventilated Areas") %>% 
+  ggplot(., mapping = aes(x = bar_restrictions, y = state_slope, color = bar_restrictions)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Bar Restriction") + 
+    ylab("State Slope (b1)") + 
+    ggtitle("State Slope Coefficients by Bar Restriction")
+```
+
+<br>
+
+#### FUNDING - focus on expenditures per capita. Funding did not have any effect on the intercept (top) or slope (bottom) state coefficients. However, trends indicate that states with a higher smoker prevalence and states with a smaller rate of smoking decline spent more on smoking cessation programs.
+
+```{r funding_intercept}
+summary(
+  lm(state_int ~ expenditures_per_capita, data = data %>% distinct(state, state_int, expenditures_per_capita))
+)
+
+data %>% distinct(state, state_int, expenditures_per_capita) %>% 
+  ggplot(., mapping = aes(x = expenditures_per_capita, y = state_int)) + 
+    geom_point() + 
+    stat_smooth(method = "lm") +
+    xlab("Expenditures per capita ($)") + 
+    ylab("Intercept (b0)") +
+    ggtitle("Correlation between state intercept and State Expenditures on Smoking Cessation")
+```
+
+```{r funding_slope}
+summary(
+  lm(state_slope ~ expenditures_per_capita, data = data %>% distinct(state, state_slope, expenditures_per_capita))
+)
+
+data %>% distinct(state, state_slope, expenditures_per_capita) %>% 
+  ggplot(., mapping = aes(x = expenditures_per_capita, y = state_slope)) + 
+    geom_point() + 
+    stat_smooth(method = "lm") +
+    xlab("Expenditures per capita ($)") + 
+    ylab("Slope (b1)") +
+    ggtitle("Correlation between state slope and State Expenditures on Smoking Cessation")
+```
+
+<br>
+
+#### MEDICAID - focus on fee-for-service plans. No differences were observed based on medicaid services provided.
+
+```{r medicaid_intercept}
+summary(
+  aov(state_int ~ fee_for_service_plans, data = data %>% distinct(state, state_int, fee_for_service_plans) %>% filter(fee_for_service_plans != "Not Applicable"))
+)
+
+data %>% distinct(state, state_int, fee_for_service_plans) %>% 
+  filter(fee_for_service_plans != "Not Applicable") %>%
+  ggplot(., mapping = aes(x = fee_for_service_plans, y = state_int, color = fee_for_service_plans)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Does State Provide Service?") + 
+    ylab("State Intercept (b0)") + 
+    ggtitle("State Intercept Coefficients by Fee-For-Service Plan")
+```
+
+```{r medicaid_slope}
+summary(
+  aov(state_slope ~ fee_for_service_plans, data = data %>% distinct(state, state_slope, fee_for_service_plans) %>% filter(fee_for_service_plans != "Not Applicable"))
+)
+
+data %>% distinct(state, state_slope, fee_for_service_plans) %>% 
+  filter(fee_for_service_plans != "Not Applicable") %>%
+  ggplot(., mapping = aes(x = fee_for_service_plans, y = state_slope, color = fee_for_service_plans)) + 
+    geom_boxplot() + 
+    coord_flip() + 
+    guides(color = FALSE) + 
+    xlab("Does State Provide Service?") + 
+    ylab("State Slope (b1)") + 
+    ggtitle("State Slope Coefficients by Fee-For-Service Plan")
+```
+
+<br>
+
+#### QUITLINE. As was shown previously, states with a higher smoking prevalence (intercept) in 2011 had more quitline calls per 10,000. There was no effect of quitline calls on change in smoking prevalence over time.
+
+```{r quitline_intercept}
+summary(
+  lm(state_int ~ quitline_calls_per_10000, data = data %>% distinct(state, state_int, quitline_calls_per_10000))
+)
+
+data %>% distinct(state, state_int, quitline_calls_per_10000) %>% 
+  ggplot(., mapping = aes(x = quitline_calls_per_10000, y = state_int)) + 
+    geom_point() + 
+    stat_smooth(method = "lm") +
+    xlab("Quitline calls (#/10000)") + 
+    ylab("Intercept (b0)") +
+    ggtitle("Correlation between state intercept and Quitline Calls")
+```
+
+```{r quitline_slope}
+summary(
+  lm(state_slope ~ quitline_calls_per_10000, data = data %>% distinct(state, state_slope, quitline_calls_per_10000))
+)
+
+data %>% distinct(state, state_slope, quitline_calls_per_10000) %>% 
+  ggplot(., mapping = aes(x = quitline_calls_per_10000, y = state_slope)) + 
+    geom_point() + 
+    stat_smooth(method = "lm") +
+    xlab("Quitline calls (#/10000)") + 
+    ylab("Slope (b1)") +
+    ggtitle("Correlation between state slope and Quitline Calls")
+```
 
 <br>
 
