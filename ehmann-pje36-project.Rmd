@@ -34,7 +34,7 @@ smoking_rates <- "https://chronicdata.cdc.gov/resource/gx47-p4ij.json" %>%
   nest(.key = smoking_rate) %>% 
   filter(abbr != "PR", 
          abbr != "GU")
-  )
+)
 ```
 
 <br>
