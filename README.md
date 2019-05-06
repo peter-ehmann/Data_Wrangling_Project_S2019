@@ -71,7 +71,7 @@ funding_per_capita [5] funding received ($) for smoking cessation per state citi
 
 expenditures_per_capita [5] money spent ($) for smoking cessation per state citizen (dbl)
 
-percent_funding_used [5] percentage of funding used (dlb)
+percent_funding_used [5] percentage of funding used (dbl)
 
 fee_for_service_plans [6] information on state offered fee-for-service plans for cessation (txt)
 
