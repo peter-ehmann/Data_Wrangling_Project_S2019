@@ -71,7 +71,7 @@ quitline_calls_per_10000 [7] total calls to the state quitline per 10000 people 
 
 <br>
 
-### Sources - 
+### Sources
 
 [1]  CDC Behavioral Risk Factor Data: Tobacco Use (2011 to present)
 https://chronicdata.cdc.gov/Survey-Data/Table-for-STATE-System-Current-Cigarette-Use-Among/xmxq-jxrr
