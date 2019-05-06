@@ -556,7 +556,7 @@ summary(data %>% distinct(state, state_int) %>% select(state_int))
 
 #### Summary of state_slope.
 
-```{r int_summary}
+```{r slope_summary}
 summary(data %>% distinct(state, state_slope) %>% select(state_slope))
 ```
 
