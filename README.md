@@ -3,13 +3,13 @@ My final class project for MSDS 597 - Data Wrangling and Husbandry (Spring, 2019
 
 <br>
 
-### Description of "ehmann-pje-36-project.Rmd"
+### Description of "ehmann-pje36-project.Rmd"
 
 [8-16] Necessary R libraries.
 
-[20-313] Code to extract and format data.
+[20-311] Code to extract and format data.
 
-[315-787] Code for data analysis and visualization.
+[315-881] Code for data analysis and visualization.
 
 <br>
 
